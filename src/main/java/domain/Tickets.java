@@ -30,6 +30,10 @@ public class Tickets {
         return new Tickets(tickets);
     }
 
+    public List<Ticket> getTickets() {
+        return tickets;
+    }
+
     public void checkTicketsWithWinningNumbers(WinningNumbers winningNumbers) {
         Iterator<Ticket> ticketIterator = tickets.iterator();
         Prize prize;

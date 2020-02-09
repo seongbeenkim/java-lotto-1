@@ -52,6 +52,10 @@ public class Ticket {
         return prize;
     }
 
+    public Set<Integer> getNumbers() {
+        return numbers;
+    }
+
     private int getCountOfWinningNumbers(WinningNumbers winningNumbers) {
         int count = 0;
 
