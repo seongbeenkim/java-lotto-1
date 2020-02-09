@@ -3,18 +3,21 @@
 MVC Model Structure 
 - Input : 구입금액, 당첨 번호
 - Output : 당첨 통계, 수익률 
-##1. Domain 설계
+<h2>1. Domain 설계 </h2>
  - Ticket
  - Tickets
  - Prize
  - WinningNumbers
 
-##2. 전략 설계
+<h2>2. 전략 설계</h2>
  - Manual Lotto Number Generation
  - Random Lotto Number Generation
  
-##3. 게임 설계
+<h2>3. 게임 설계</h2>
 
-##4. 단위테스트 작성
+<h2>4. 단위테스트 작성</h2>
 
-##5. 예외작성
+<h2>5. 예외작성</h2>
+
+<h2>6. 테스트작성</h2>
+ - 도메인 테스트 작성 (Ticket,Tickets,Prize)

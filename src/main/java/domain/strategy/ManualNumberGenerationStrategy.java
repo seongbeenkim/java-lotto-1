@@ -6,6 +6,8 @@ public class ManualNumberGenerationStrategy implements NumberGenerationStrategy 
 
     @Override
     public int generateNumber() {
+        if(numberStart == 6)
+            numberStart=0;
         return numberStart++;
     }
 }
