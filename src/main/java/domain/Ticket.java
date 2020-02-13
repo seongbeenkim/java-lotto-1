@@ -2,9 +2,7 @@ package domain;
 
 import domain.strategy.NumberGenerationStrategy;
 
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
+import java.util.*;
 
 public class Ticket {
 
@@ -15,30 +13,16 @@ public class Ticket {
 
     private Set<Integer> numbers;
 
-    private Ticket(Set<Integer> numbers) {
-        this.numbers = numbers;
+    private Ticket(List<Integer> numbersList) {
+        numbers = new HashSet<>(numbersList);
     }
 
-    public static Ticket of(NumberGenerationStrategy strategy){
-        return new Ticket(generateNumbers(strategy));
+    public static Ticket of(List<Integer> numbers){
+        return new Ticket(numbers);
     }
 
     public static Prize getPrize() {
         return prize;
-    }
-
-    private static Set<Integer> generateNumbers(NumberGenerationStrategy strategy){
-
-        Set<Integer> numbers = new HashSet();
-
-        while(numbers.size() < MAX_COUNT_OF_LOTTO_NUMBERS)
-            numbers.add(generateNumber(strategy));
-
-        return numbers;
-    }
-
-    private static int generateNumber(NumberGenerationStrategy strategy) {
-        return strategy.generateNumber();
     }
 
     public Prize checkTicketWithWinningNumber(WinningNumbers winningNumbers) {

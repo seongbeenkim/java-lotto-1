@@ -1,6 +1,6 @@
 package domain;
 
-import domain.strategy.NumberGenerationStrategy;
+import domain.strategy.RandomNumberGenerationStrategy;
 
 import java.util.*;
 
@@ -10,8 +10,8 @@ public class Tickets {
     private double profitRatio;
     Map<Prize, Integer> prizeResult = new HashMap<>();
 
-    private Tickets(List<Ticket> tickets) {
-        this.tickets = tickets;
+    private Tickets() {
+        this.tickets = new ArrayList<>();
         initializePrizeResult();
     }
 
@@ -21,20 +21,15 @@ public class Tickets {
         }
     }
 
-    public static Tickets of(int numberOfTickets, NumberGenerationStrategy strategy){
-        List<Ticket> tickets = new ArrayList<>();
-
-        for(int i = 0; i < numberOfTickets; i++){
-            tickets.add(Ticket.of(strategy));
-        }
-        return new Tickets(tickets);
+    public static Tickets of(){
+        return new Tickets();
     }
 
     public List<Ticket> getTickets() {
         return tickets;
     }
 
-    public void checkTicketsWithWinningNumbers(WinningNumbers winningNumbers) {
+    public void checkTickets(WinningNumbers winningNumbers) {
         Iterator<Ticket> ticketIterator = tickets.iterator();
         Prize prize;
         double profit = 0;
@@ -62,5 +57,13 @@ public class Tickets {
 
     public double calculateProfitRatio() {
         return profitRatio;
+    }
+
+    public void buyTicketsManual(List<Ticket> manualTickets) {
+        tickets.addAll(manualTickets);
+    }
+
+    public void buyTicketsRandom(int numberOfTickets) {
+        tickets.addAll(RandomNumberGenerationStrategy.getRandomTickets(numberOfTickets));
     }
 }
