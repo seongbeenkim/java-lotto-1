@@ -1,6 +1,5 @@
 package domain;
 
-import domain.strategy.ZeroToFiveNumberGenerationStrategy;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;

@@ -1,9 +1,7 @@
 package domain;
 
-import domain.strategy.ZeroToFiveNumberGenerationStrategy;
 import org.junit.jupiter.api.Test;
 
-import java.io.InputStream;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;

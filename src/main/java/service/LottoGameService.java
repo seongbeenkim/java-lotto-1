@@ -1,16 +1,30 @@
 package service;
 
+import domain.Ticket;
 import domain.Tickets;
+import domain.User;
 import domain.WinningNumbers;
-import domain.strategy.RandomNumberGenerationStrategy;
+
+import java.util.List;
 
 public class LottoGameService {
 
-    public Tickets buyTickets(int numberOfLotto) {
-        return Tickets.of(numberOfLotto, new RandomNumberGenerationStrategy());
+    User user = new User();
+
+    public void buyTicketsManual(List<Ticket> tickets) {
+
+        user.buyTicketsManual(tickets);
     }
 
-    public void checkTickets(Tickets tickets, WinningNumbers winningNumbers) {
-        tickets.checkTicketsWithWinningNumbers(winningNumbers);
+    public void buyTicketsRandom(int numberOfTickets){
+        user.buyTicketsRandom(numberOfTickets);
+    }
+
+    public void checkTickets(WinningNumbers winningNumbers) {
+        user.checkTickets(winningNumbers);
+    }
+
+    public Tickets getTicketsFromUser() {
+        return user.getTicketsFromUser();
     }
 }
