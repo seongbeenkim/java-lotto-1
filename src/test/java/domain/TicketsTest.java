@@ -1,25 +1,34 @@
 package domain;
 
-import domain.strategy.ManualNumberGenerationStrategy;
+import domain.strategy.ZeroToFiveNumberGenerationStrategy;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class TicketsTest {
 
     @Test
     void ofTest() {
-        Tickets tickets = Tickets.of(5,new ManualNumberGenerationStrategy());
-        Set<Integer> numbers = new HashSet<>(Arrays.asList(0,1,2,3,4,5));
+
+        Tickets tickets = Tickets.of();
+
+        List<Integer> manualNumbers = IntStream.range(1,6).boxed().collect(Collectors.toList());
+        Ticket manualTicket = Ticket.of(manualNumbers);
+
+        List<Ticket> manualTickets = new ArrayList<>();
+        manualTickets.add(manualTicket);
+
+        tickets.buyTicketsManual(manualTickets);
+
         List<Ticket> ticketList = tickets.getTickets();
         assertThat(ticketList.size())
-                .isEqualTo(5);
-        for(int i=0; i<5; i++)
-            assertThat(ticketList.get(i).getNumbers().containsAll(numbers))
-                .isTrue();
+                .isEqualTo(1);
+        assertThat(ticketList.get(0).getNumbers().containsAll(manualNumbers))
+            .isTrue();
     }
 
 }

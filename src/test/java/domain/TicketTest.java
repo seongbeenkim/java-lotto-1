@@ -1,20 +1,21 @@
 package domain;
 
-import domain.strategy.ManualNumberGenerationStrategy;
+import domain.strategy.ZeroToFiveNumberGenerationStrategy;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.io.InputStream;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class TicketTest {
 
     @Test
     void ofTest() {
-        Ticket ticket = Ticket.of(new ManualNumberGenerationStrategy());
+        List<Integer> ticketList = IntStream.range(1,6).boxed().collect(Collectors.toList());
+        Ticket ticket = Ticket.of(ticketList);
         Set<Integer> manualNumbers =ticket.getNumbers();
         Set<Integer> numbers = new HashSet<>(Arrays.asList(0,1,2,3,4,5));
         assertThat(manualNumbers.containsAll(numbers))
@@ -23,12 +24,21 @@ class TicketTest {
 
     @Test
     void checkTicketWithWinningNumberTest() {
-        Ticket ticket = Ticket.of(new ManualNumberGenerationStrategy());
+        List<Integer> ticketList = IntStream.range(1,6).boxed().collect(Collectors.toList());
+        Ticket ticket = Ticket.of(ticketList);
 
         Set<Integer> numbers = new HashSet<>(Arrays.asList(0,1,2,3,4,5));
         WinningNumbers winningNumbers = new WinningNumbers(numbers,6);
 
         assertThat(ticket.checkTicketWithWinningNumber(winningNumbers))
                 .isEqualTo(Prize.SIX_MATCHED);
+    }
+
+    @Test
+    void test(){
+        List<Integer> ticketList = new ArrayList<>();
+        List<Integer> lottoNumbers = IntStream.range(0,45).boxed().collect(Collectors.toList());
+        Collections.shuffle(lottoNumbers);
+        lottoNumbers.subList(0,6);
     }
 }
