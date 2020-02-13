@@ -21,3 +21,8 @@ MVC Model Structure
 
 <h2>6. 테스트작성</h2>
  - 도메인 테스트 작성 (Ticket,Tickets,Prize)
+ 
+<h2>7. 요구사항 추가</h2>
+- 수동 입력 받기 (기존에는 자동 발권)
+- 보너스 볼 입력받기(기존에 기능 구현되어있음.)
+- Refactoring 
