@@ -2,9 +2,9 @@ package lotto;
 
 import java.util.Objects;
 
-public class BuyingPrice {
-    private static final int TICKET_PRICE = 1000;
+import static lotto.LottoTicketVendingMachine.TICKET_PRICE;
 
+public class BuyingPrice {
     private final int buyingPrice;
 
     public BuyingPrice(final int buyingPrice) {
@@ -27,6 +27,10 @@ public class BuyingPrice {
         if ((buyingPrice % TICKET_PRICE) != 0) {
             throw new IllegalArgumentException("구입 금액은 1,000원 단위여야 합니다.");
         }
+    }
+
+    public int value() {
+        return buyingPrice;
     }
 
     @Override
