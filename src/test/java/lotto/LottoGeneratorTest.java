@@ -3,21 +3,22 @@ package lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LottoGeneratorTest {
 
     @Test
-    @DisplayName("1 ~ 45 사이의 로또 번호를 생성한다.")
+    @DisplayName("6개의 로또 번호를 반환한다")
     void lotto_generator() {
         //given
         LottoGenerator lottoGenerator = new LottoGenerator();
 
         //when
-        LottoNumber lottoNumber = lottoGenerator.lottoNumber();
+        List<LottoNumber> lottoNumbers = lottoGenerator.lottoNumbers();
 
         //then
-        assertThat(lottoNumber.value()).isLessThanOrEqualTo(45);
-        assertThat(lottoNumber.value()).isGreaterThanOrEqualTo(1);
+        assertThat(lottoNumbers).hasSize(6);
     }
 }

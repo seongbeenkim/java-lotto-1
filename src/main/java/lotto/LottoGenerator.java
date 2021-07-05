@@ -10,7 +10,7 @@ import static lotto.LottoNumber.MIN_LOTTO_BOUND;
 
 public class LottoGenerator {
 
-    private static final List<LottoNumber> lottoNumbers = create();
+    private static final List<LottoNumber> lottoNumberContainer = create();
 
     private static List<LottoNumber> create() {
         return IntStream.rangeClosed(MIN_LOTTO_BOUND, MAX_LOTTO_BOUND)
@@ -18,8 +18,9 @@ public class LottoGenerator {
                 .collect(Collectors.toList());
     }
 
-    public LottoNumber lottoNumber() {
-        Collections.shuffle(lottoNumbers);
-        return lottoNumbers.get(0);
+    public List<LottoNumber> lottoNumbers() {
+        Collections.shuffle(lottoNumberContainer);
+        return lottoNumberContainer.subList(0, 6);
     }
+
 }
