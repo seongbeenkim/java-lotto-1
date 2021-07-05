@@ -47,4 +47,14 @@ public class WinningNumbers {
     public int hashCode() {
         return Objects.hash(winningNumbers, bonusNumber);
     }
+
+    public int matchedWinningNumberCount(LottoTicket lottoTicket) {
+        return (int) winningNumbers.stream()
+                .filter(winningNumber -> lottoTicket.contains(winningNumber))
+                .count();
+    }
+
+    public boolean isMatchedBonusNumber(LottoTicket lottoTicket) {
+        return lottoTicket.contains(bonusNumber);
+    }
 }

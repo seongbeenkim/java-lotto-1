@@ -14,4 +14,8 @@ public class LottoTicket {
     public List<LottoNumber> lottoNumbers() {
         return Collections.unmodifiableList(lottoNumbers);
     }
+
+    public boolean contains(LottoNumber lottoNumber) {
+        return lottoNumbers.contains(lottoNumber);
+    }
 }
