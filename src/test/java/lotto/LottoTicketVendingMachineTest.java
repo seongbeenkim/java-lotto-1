@@ -1,5 +1,8 @@
 package lotto;
 
+import lotto.domain.BuyingPrice;
+import lotto.domain.LottoTicket;
+import lotto.domain.LottoTicketVendingMachine;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

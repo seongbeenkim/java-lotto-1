@@ -1,12 +1,12 @@
-package lotto;
+package lotto.domain;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import static lotto.LottoNumber.MAX_LOTTO_BOUND;
-import static lotto.LottoNumber.MIN_LOTTO_BOUND;
+import static lotto.domain.LottoNumber.MAX_LOTTO_BOUND;
+import static lotto.domain.LottoNumber.MIN_LOTTO_BOUND;
 
 public class LottoGenerator {
 

@@ -1,8 +1,6 @@
-package lotto;
+package lotto.domain;
 
 import java.util.Objects;
-
-import static lotto.LottoTicketVendingMachine.TICKET_PRICE;
 
 public class BuyingPrice {
     private final int buyingPrice;
@@ -18,13 +16,13 @@ public class BuyingPrice {
     }
 
     private void validateMinimum(int buyingPrice) {
-        if (buyingPrice < TICKET_PRICE) {
+        if (buyingPrice < LottoTicketVendingMachine.TICKET_PRICE) {
             throw new IllegalArgumentException("구입 금액은 1,000원 이상이여야 합니다.");
         }
     }
 
     private void validateFactor(int buyingPrice) {
-        if ((buyingPrice % TICKET_PRICE) != 0) {
+        if ((buyingPrice % LottoTicketVendingMachine.TICKET_PRICE) != 0) {
             throw new IllegalArgumentException("구입 금액은 1,000원 단위여야 합니다.");
         }
     }
