@@ -42,4 +42,18 @@ public class BuyingPriceTest {
                 .isThrownBy(() -> new BuyingPrice(invalidPrice))
                 .withMessage("구입 금액은 1,000원 단위여야 합니다.");
     }
+
+    @Test
+    @DisplayName("입력받은 티켓 금액으로 나눈 값을 반환한다")
+    void divide_ticket_price() {
+        //given
+        int ticketPrice = 1000;
+        BuyingPrice buyingPrice = new BuyingPrice(10000);
+
+        //when
+        int ticketAmount = buyingPrice.divide(ticketPrice);
+
+        //then
+        assertThat(ticketAmount).isEqualTo(10);
+    }
 }

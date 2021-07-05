@@ -35,6 +35,10 @@ public class BuyingPrice {
         return buyingPrice;
     }
 
+    public int divide(final int ticketPrice) {
+        return buyingPrice / ticketPrice;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

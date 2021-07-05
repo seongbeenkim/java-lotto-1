@@ -9,14 +9,9 @@ public class LottoTicketVendingMachine {
     private static final LottoGenerator lottoGenerator = new LottoGenerator();
 
     public List<LottoTicket> issueTickets(BuyingPrice buyingPrice) {
-        int ticketAmount = divide(buyingPrice);
-        return IntStream.range(0, ticketAmount)
+        return IntStream.range(0, buyingPrice.divide(TICKET_PRICE))
                 .mapToObj(i -> lottoGenerator.issueAutoLottoNumbers())
                 .map(LottoTicket::new)
                 .collect(Collectors.toList());
-    }
-
-    private int divide(BuyingPrice buyingPrice) {
-        return (buyingPrice.value() / TICKET_PRICE);
     }
 }
