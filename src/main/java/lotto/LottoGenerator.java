@@ -18,9 +18,8 @@ public class LottoGenerator {
                 .collect(Collectors.toList());
     }
 
-    public List<LottoNumber> lottoNumbers() {
+    public List<LottoNumber> issueAutoLottoNumbers() {
         Collections.shuffle(lottoNumberContainer);
         return lottoNumberContainer.subList(0, 6);
     }
-
 }

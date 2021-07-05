@@ -14,7 +14,7 @@ public class LottoTicketTest {
     void create() {
         //given
         LottoGenerator lottoGenerator = new LottoGenerator();
-        List<LottoNumber> lottoNumbers = lottoGenerator.lottoNumbers();
+        List<LottoNumber> lottoNumbers = lottoGenerator.issueAutoLottoNumbers();
 
         //when
         LottoTicket lottoTicket = new LottoTicket(lottoNumbers);

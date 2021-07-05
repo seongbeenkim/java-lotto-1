@@ -16,7 +16,7 @@ public class LottoGeneratorTest {
         LottoGenerator lottoGenerator = new LottoGenerator();
 
         //when
-        List<LottoNumber> lottoNumbers = lottoGenerator.lottoNumbers();
+        List<LottoNumber> lottoNumbers = lottoGenerator.issueAutoLottoNumbers();
 
         //then
         assertThat(lottoNumbers).hasSize(6);
