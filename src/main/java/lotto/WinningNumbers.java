@@ -3,6 +3,7 @@ package lotto;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class WinningNumbers {
@@ -26,7 +27,7 @@ public class WinningNumbers {
 
     private void validateDuplication(List<LottoNumber> winningNumbers, LottoNumber bonusNumber) {
         winningNumbers.add(bonusNumber);
-        HashSet<LottoNumber> lottoNumbers = new HashSet<>(winningNumbers);
+        Set<LottoNumber> lottoNumbers = new HashSet<>(winningNumbers);
 
         if (lottoNumbers.size() < WINNING_NUMBER_SIZE) {
             throw new IllegalArgumentException("당첨 번호가 중복됩니다.");
