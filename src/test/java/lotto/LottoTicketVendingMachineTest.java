@@ -3,6 +3,8 @@ package lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LottoTicketVendingMachineTest {
@@ -18,6 +20,20 @@ public class LottoTicketVendingMachineTest {
 
         //then
         assertThat(ticketAmount).isEqualTo(10);
+    }
+
+    @Test
+    @DisplayName("로또 티켓 장수만큼 로또 티켓을 생성한다.")
+    void issue_tickets() {
+        //given
+        int ticketAmount = 5;
+        LottoTicketVendingMachine lottoTicketVendingMachine = new LottoTicketVendingMachine();
+
+        //when
+        List<LottoTicket> tickets = lottoTicketVendingMachine.issueTickets(ticketAmount);
+
+        //then
+        assertThat(tickets).hasSize(ticketAmount);
     }
 
 }
