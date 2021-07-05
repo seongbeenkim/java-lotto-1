@@ -10,6 +10,10 @@ public class BuyingPrice {
         this.buyingPrice = buyingPrice;
     }
 
+    public BuyingPrice(String buyingPrice) {
+        this(Integer.parseInt(buyingPrice));
+    }
+
     private void validate(int buyingPrice) {
         validateMinimum(buyingPrice);
         validateFactor(buyingPrice);
