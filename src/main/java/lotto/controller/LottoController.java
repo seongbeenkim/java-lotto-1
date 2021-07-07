@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import lotto.domain.WinningStatistics;
 import lotto.domain.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -32,16 +31,10 @@ public class LottoController {
         WinningNumbers winningNumbers = new WinningNumbers(splitWinningNumbers, bonusNumber);
         WinningStatistics winningStatistics = new WinningStatistics(winningNumbers);
 
-        int totalPrize = 0;
-        for (LottoTicket lottoTicket : lottoTickets) {
-            int matchedWinningNumberCount = winningNumbers.matchedWinningNumberCount(lottoTicket);
-            boolean matchedBonusNumber = winningNumbers.isMatchedBonusNumber(lottoTicket);
-            int prize = LottoPrize.prize(matchedWinningNumberCount, matchedBonusNumber);
-            totalPrize += prize;
-        }
-        Map<Integer, Long> groupByWinningNumber = winningStatistics.groupByWinningNumber(lottoTickets);
+        Map<LottoPrize, Integer> ranks = winningStatistics.groupByWinningNumber(lottoTickets);
+        OutputView.printWinningStatistics(ranks);
 
-        float profitRate = winningStatistics.profitRate(ticketAmount, totalPrize);
+        float profitRate = winningStatistics.profitRate(ticketAmount, ranks);
         OutputView.printProfitRate(profitRate);
     }
 }
