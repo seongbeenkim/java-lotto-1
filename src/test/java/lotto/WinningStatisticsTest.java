@@ -15,10 +15,9 @@ import java.util.Map;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class WinningStatisticsTest {
-    private static WinningNumbers winningNumbers = generateWinningNumber();
-    private static WinningStatistics winningStatistics = new WinningStatistics(winningNumbers);
+    private WinningNumbers winningNumbers = generateWinningNumber();
 
-    private static WinningNumbers generateWinningNumber() {
+    private WinningNumbers generateWinningNumber() {
         List<Integer> inputNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
         int bonusNumber = 45;
         return new WinningNumbers(inputNumbers, bonusNumber);
@@ -28,7 +27,8 @@ public class WinningStatisticsTest {
     @DisplayName("당첨 번호 개수가 같은 로또 티켓 개수를 반환한다")
     void group_by_matched_count() {
         //given
-        ArrayList<LottoTicket> lottoTickets = generateLottoTicketList();
+        WinningStatistics winningStatistics = new WinningStatistics(winningNumbers);
+        List<LottoTicket> lottoTickets = generateLottoTicketList();
 
         //when
         Map<LottoPrize, Integer> ranks = winningStatistics.groupByWinningNumber(lottoTickets);

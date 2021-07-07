@@ -21,11 +21,18 @@ public enum LottoPrize {
     }
 
     public static int prize(int matchedWinningNumberCount, boolean isMatchedBonusNumber) {
-        return Arrays.stream(LottoPrize.values())
+        return Arrays.stream(values())
                 .filter(lottoPrize -> lottoPrize.isMatchedWith(matchedWinningNumberCount, isMatchedBonusNumber))
                 .mapToInt(LottoPrize::prizeMoney)
                 .findFirst()
                 .orElse(NONE.prizeMoney);
+    }
+
+    public static LottoPrize findBy(int matchedCount) {
+        return Arrays.stream(values())
+                .filter(lottoPrize -> lottoPrize.matchedWinningNumberCount == matchedCount)
+                .findFirst()
+                .orElse(NONE);
     }
 
     private boolean isMatchedWith(int matchedWinningNumberCount, boolean matchedBonusNumber) {
@@ -35,6 +42,14 @@ public enum LottoPrize {
 
     public int prizeMoney() {
         return prizeMoney;
+    }
+
+    public int matchedWinningNumberCount() {
+        return matchedWinningNumberCount;
+    }
+
+    public boolean isMatchedBonusNumber() {
+        return matchedBonusNumber;
     }
 }
 

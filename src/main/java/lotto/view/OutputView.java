@@ -29,9 +29,16 @@ public class OutputView {
         System.out.printf("총 수익률은 %.2f 입니다.%n", profitRate);
     }
 
-    public static void printWinningStatistics(int matchedWinningNumbers, boolean matchedBonusNumber, int prize, int matchedTicketCount) {
-        if (matchedBonusNumber) {
-            String.format("%d개 일치, 보너스 볼 일치 (%d원) - %개", matchedWinningNumbers, prize, matchedTicketCount);
+    public static void printWinningStatistics(Map<LottoPrize, Integer> ranks) {
+        System.out.println("당첨 통계\n---------");
+        for (LottoPrize lottoPrize : ranks.keySet()) {
+            if (lottoPrize.isMatchedBonusNumber()) {
+                System.out.printf("%d개 일치, 보너스 볼 일치 (%d원) - %d개%n", lottoPrize.matchedWinningNumberCount(),
+                        lottoPrize.prizeMoney(), ranks.get(lottoPrize));
+                continue;
+            }
+            System.out.printf("%d개 일치 (%d원) - %d개%n", lottoPrize.matchedWinningNumberCount(),
+                    lottoPrize.prizeMoney(), ranks.get(lottoPrize));
         }
     }
 }

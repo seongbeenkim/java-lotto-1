@@ -1,16 +1,14 @@
 package lotto.domain;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
+import static lotto.domain.LottoPrize.*;
 import static lotto.domain.LottoTicketVendingMachine.TICKET_PRICE;
 
 public class WinningStatistics {
     private final WinningNumbers winningNumbers;
-    private final Map<LottoPrize, Integer> ranks = new HashMap<>();
+    private final Map<LottoPrize, Integer> ranks = new LinkedHashMap<>();
 
     public WinningStatistics(WinningNumbers winningNumbers) {
         this.winningNumbers = winningNumbers;
@@ -18,7 +16,8 @@ public class WinningStatistics {
     }
 
     private void initRanks() {
-        Arrays.stream(values()).filter(v -> v.matchedWinningNumberCount() > 0)
+        Arrays.stream(values()).sorted(Comparator.reverseOrder())
+                .filter(v -> v.matchedWinningNumberCount() > NONE.matchedWinningNumberCount())
                 .forEach(v -> ranks.put(v, 0));
     }
 
@@ -27,6 +26,10 @@ public class WinningStatistics {
 
         for (int i = 0; i < matchedCounts.size(); i++) {
             int matchedCount = matchedCounts.get(i);
+
+            if (matchedCount < FIFTH.matchedWinningNumberCount()) {
+                continue;
+            }
 
             if (matchedCount == SECOND.matchedWinningNumberCount() && winningNumbers.isMatchedBonusNumber(lottoTickets.get(i))) {
                 ranks.put(SECOND, ranks.get(SECOND) + 1);
@@ -51,9 +54,9 @@ public class WinningStatistics {
         return (float) totalPrize / (ticketAmount * TICKET_PRICE);
     }
 
-    private int totalPrize(Map<LottoPrize, Integer> lottoPrize) {
-        return lottoPrize.keySet().stream()
-                .mapToInt(v -> v.prizeMoney() * lottoPrize.get(v))
+    private int totalPrize(Map<LottoPrize, Integer> lottoPrizes) {
+        return lottoPrizes.keySet().stream()
+                .mapToInt(lottoPrize -> lottoPrize.prizeMoney() * lottoPrizes.get(lottoPrize))
                 .sum();
     }
 }

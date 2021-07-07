@@ -1,17 +1,13 @@
 package lotto.domain;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class WinningNumbers {
-    private static final int WINNING_NUMBER_SIZE = 7;
+    private static final int WINNING_NUMBER_SIZE = 6;
 
     private final List<LottoNumber> winningNumbers;
     private final LottoNumber bonusNumber;
-
 
     public WinningNumbers(List<Integer> winningNumbers, int bonusNumber) {
         this(winningNumbers.stream()
@@ -26,12 +22,21 @@ public class WinningNumbers {
     }
 
     private void validateDuplication(List<LottoNumber> winningNumbers, LottoNumber bonusNumber) {
-        winningNumbers.add(bonusNumber);
         Set<LottoNumber> lottoNumbers = new HashSet<>(winningNumbers);
 
-        if (lottoNumbers.size() < WINNING_NUMBER_SIZE) {
+        if (lottoNumbers.size() < WINNING_NUMBER_SIZE || winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException("당첨 번호가 중복됩니다.");
         }
+    }
+
+    public int matchedWinningNumberCount(LottoTicket lottoTicket) {
+        return (int) winningNumbers.stream()
+                .filter(winningNumber -> lottoTicket.contains(winningNumber))
+                .count();
+    }
+
+    public boolean isMatchedBonusNumber(LottoTicket lottoTicket) {
+        return lottoTicket.contains(bonusNumber);
     }
 
     @Override
@@ -43,18 +48,9 @@ public class WinningNumbers {
                 Objects.equals(bonusNumber, that.bonusNumber);
     }
 
+
     @Override
     public int hashCode() {
         return Objects.hash(winningNumbers, bonusNumber);
-    }
-
-    public int matchedWinningNumberCount(LottoTicket lottoTicket) {
-        return (int) winningNumbers.stream()
-                .filter(winningNumber -> lottoTicket.contains(winningNumber))
-                .count();
-    }
-
-    public boolean isMatchedBonusNumber(LottoTicket lottoTicket) {
-        return lottoTicket.contains(bonusNumber);
     }
 }
