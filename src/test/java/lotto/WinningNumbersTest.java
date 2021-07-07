@@ -77,7 +77,7 @@ public class WinningNumbersTest {
     @DisplayName("보너스 번호와 일치하는 로또 번호가 있는지 확인한다")
     void matched_bonus_number() {
         //given
-        LottoTicket lottoTicket = createLottoTicket();
+        LottoTicket lottoTicket = new LottoTicket(1, 2, 3, 4, 5, 6);
 
         List<Integer> inputNumbers = Arrays.asList(4, 5, 6, 7, 8, 9);
         int bonusNumber = 1;
