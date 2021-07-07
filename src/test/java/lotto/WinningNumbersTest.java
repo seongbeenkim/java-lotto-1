@@ -1,21 +1,21 @@
 package lotto;
 
-import lotto.domain.LottoNumber;
 import lotto.domain.LottoTicket;
 import lotto.domain.WinningNumbers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class WinningNumbersTest {
-
     @Test
     @DisplayName("6개의 로또 당첨 번호를 입력받아 당첨 번호를 객체를 생성한다")
     void create() {
@@ -56,21 +56,19 @@ public class WinningNumbersTest {
                 .withMessage("당첨 번호가 중복됩니다.");
     }
 
-    @Test
+    @ParameterizedTest
+    @MethodSource("generateLottoTicket")
     @DisplayName("당첨 번호와 일치하는 로또 번호 개수를 반환한다")
-    void matched_winning_numbers_count() {
+    void matched_winning_numbers_count(int[] numbers, int expectedCount) {
         //given
-        LottoTicket lottoTicket = createLottoTicket();
-
-        List<Integer> inputNumbers = Arrays.asList(4, 5, 6, 7, 8, 9);
-        int bonusNumber = 10;
-        WinningNumbers winningNumbers = new WinningNumbers(inputNumbers, bonusNumber);
+        LottoTicket lottoTicket = new LottoTicket(numbers);
+        WinningNumbers winningNumbers = new WinningNumbers(Arrays.asList(1, 2, 3, 4, 5, 6), 45);
 
         //when
         int matchedWinningNumber = winningNumbers.matchedWinningNumberCount(lottoTicket);
 
         //then
-        assertThat(matchedWinningNumber).isEqualTo(3);
+        assertThat(matchedWinningNumber).isEqualTo(expectedCount);
     }
 
     @Test
@@ -78,10 +76,7 @@ public class WinningNumbersTest {
     void matched_bonus_number() {
         //given
         LottoTicket lottoTicket = new LottoTicket(1, 2, 3, 4, 5, 6);
-
-        List<Integer> inputNumbers = Arrays.asList(4, 5, 6, 7, 8, 9);
-        int bonusNumber = 1;
-        WinningNumbers winningNumbers = new WinningNumbers(inputNumbers, bonusNumber);
+        WinningNumbers winningNumbers = new WinningNumbers(Arrays.asList(4, 5, 6, 7, 8, 9), 1);
 
         //when
         boolean isMatchedBonusNumber = winningNumbers.isMatchedBonusNumber(lottoTicket);
@@ -90,10 +85,15 @@ public class WinningNumbersTest {
         assertThat(isMatchedBonusNumber).isTrue();
     }
 
-    private LottoTicket createLottoTicket() {
-        List<LottoNumber> lottoNumbers = Stream.of(1, 2, 3, 4, 5, 6)
-                .map(LottoNumber::new)
-                .collect(Collectors.toList());
-        return new LottoTicket(lottoNumbers);
+    private static Stream<Arguments> generateLottoTicket() {
+        return Stream.of(
+                Arguments.of(new int[]{1, 2, 3, 4, 5, 6}, 6),
+                Arguments.of(new int[]{1, 2, 3, 4, 5, 7}, 5),
+                Arguments.of(new int[]{1, 2, 3, 4, 7, 8}, 4),
+                Arguments.of(new int[]{1, 2, 3, 7, 8, 9}, 3),
+                Arguments.of(new int[]{1, 2, 7, 8, 9, 10}, 2),
+                Arguments.of(new int[]{1, 7, 8, 9, 10, 11}, 1),
+                Arguments.of(new int[]{8, 9, 10, 11, 12, 13}, 0)
+        );
     }
 }
