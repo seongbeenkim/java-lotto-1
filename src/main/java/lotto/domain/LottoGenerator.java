@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -20,6 +21,8 @@ public class LottoGenerator {
 
     public List<LottoNumber> issueAutoLottoNumbers() {
         Collections.shuffle(lottoNumberContainer);
-        return lottoNumberContainer.subList(0, 6);
+        return lottoNumberContainer.subList(0, 6).stream()
+                .sorted(Comparator.comparing(LottoNumber::value))
+                .collect(Collectors.toList());
     }
 }
