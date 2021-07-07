@@ -11,12 +11,12 @@ public enum LottoPrize {
     NONE(0, false, 0);
 
     private final int matchedWinningNumberCount;
-    private final boolean isMatchedBonusNumber;
+    private final boolean matchedBonusNumber;
     private final int prizeMoney;
 
-    LottoPrize(int matchedWinningNumberCount, boolean isMatchedBonusNumber, int prizeMoney) {
+    LottoPrize(int matchedWinningNumberCount, boolean matchedBonusNumber, int prizeMoney) {
         this.matchedWinningNumberCount = matchedWinningNumberCount;
-        this.isMatchedBonusNumber = isMatchedBonusNumber;
+        this.matchedBonusNumber = matchedBonusNumber;
         this.prizeMoney = prizeMoney;
     }
 
@@ -28,9 +28,9 @@ public enum LottoPrize {
                 .orElse(NONE.prizeMoney);
     }
 
-    private boolean isMatchedWith(int matchedWinningNumberCount, boolean isMatchedBonusNumber) {
+    private boolean isMatchedWith(int matchedWinningNumberCount, boolean matchedBonusNumber) {
         return (this.matchedWinningNumberCount == matchedWinningNumberCount)
-                && (this.isMatchedBonusNumber == isMatchedBonusNumber);
+                && (this.matchedBonusNumber == matchedBonusNumber);
     }
 
     public int prizeMoney() {

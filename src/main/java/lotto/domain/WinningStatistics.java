@@ -1,7 +1,4 @@
-package lotto;
-
-import lotto.domain.LottoTicket;
-import lotto.domain.WinningNumbers;
+package lotto.domain;
 
 import static lotto.domain.LottoTicketVendingMachine.TICKET_PRICE;
 

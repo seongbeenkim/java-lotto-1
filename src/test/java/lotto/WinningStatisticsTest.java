@@ -3,6 +3,7 @@ package lotto;
 import lotto.domain.LottoPrize;
 import lotto.domain.LottoTicket;
 import lotto.domain.WinningNumbers;
+import lotto.domain.WinningStatistics;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -38,10 +39,10 @@ public class WinningStatisticsTest {
     @ParameterizedTest
     @MethodSource("generateProfit")
     @DisplayName("당첨 순위의 수익률을 계산한다")
-    void profit_rate(int[] matchedCounts, boolean isMatchedBonusNumber, float expectedProfit) {
+    void profit_rate(int[] matchedCounts, boolean matchedBonusNumber, float expectedProfit) {
         //given
         int totalPrize = Arrays.stream(matchedCounts)
-                .map(matchedCount -> LottoPrize.prize(matchedCount, isMatchedBonusNumber))
+                .map(matchedCount -> LottoPrize.prize(matchedCount, matchedBonusNumber))
                 .sum();
 
         //when
