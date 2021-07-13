@@ -22,8 +22,8 @@ public class LottoTicketTest {
         //then
         assertThat(lottoTicket.lottoNumbers())
                 .hasSize(6)
-                .extracting("value")
-                .containsExactly(lottoNumbers);
+                .extracting("lottoNumber")
+                .contains(1, 2, 3, 4, 5, 6);
     }
 
     @Test
