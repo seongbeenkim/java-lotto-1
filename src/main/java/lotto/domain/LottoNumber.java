@@ -8,8 +8,8 @@ import java.util.stream.IntStream;
 
 public class LottoNumber {
     private static final Map<Integer, LottoNumber> lottoNumbers = generateLottoNumbers();
-    private static final int LOTTO_NUMBER_MIN_BOUND = 1;
-    private static final int LOTTO_NUMBER_MAX_BOUND = 45;
+    static final int LOTTO_NUMBER_MIN_BOUND = 1;
+    static final int LOTTO_NUMBER_MAX_BOUND = 45;
 
     private final int lottoNumber;
 

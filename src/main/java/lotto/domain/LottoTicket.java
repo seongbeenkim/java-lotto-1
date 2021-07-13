@@ -9,7 +9,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class LottoTicket {
-    private static final int LOTTO_NUMBERS_COUNT = 6;
+    static final int LOTTO_NUMBERS_COUNT = 6;
 
     private final List<LottoNumber> lottoNumbers;
 
