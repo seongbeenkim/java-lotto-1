@@ -22,6 +22,7 @@ public class OutputView {
                 .stream()
                 .map(LottoTicket::lottoNumbers)
                 .forEach(OutputView::printLottoTicket);
+        System.out.println();
     }
 
     private static void printLottoTicket(List<LottoNumber> lottoNumbers) {
