@@ -30,4 +30,8 @@ public enum LottoRank {
 
         return rank;
     }
+
+    public int prize() {
+        return prize;
+    }
 }
