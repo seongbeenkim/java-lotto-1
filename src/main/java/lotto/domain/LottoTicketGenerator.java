@@ -22,10 +22,10 @@ public class LottoTicketGenerator {
     private LottoTicketGenerator() {
     }
 
-    public static List<LottoTicket> autoTicket(NumberOfTickets numberOfTickets) {
-        return IntStream.range(0, numberOfTickets.value())
+    public static LottoTickets autoTicket(NumberOfTickets numberOfTickets) {
+        return new LottoTickets(IntStream.range(0, numberOfTickets.value())
                 .mapToObj(i -> createAutoTicket())
-                .collect(Collectors.toList());
+                .collect(Collectors.toList()));
     }
 
     private static LottoTicket createAutoTicket() {

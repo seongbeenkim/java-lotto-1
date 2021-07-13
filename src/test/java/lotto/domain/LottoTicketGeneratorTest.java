@@ -3,8 +3,6 @@ package lotto.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LottoTicketGeneratorTest {
@@ -16,9 +14,9 @@ public class LottoTicketGeneratorTest {
         NumberOfTickets numberOfTickets = new NumberOfTickets(10);
 
         //when
-        List<LottoTicket> lottoTicket = LottoTicketGenerator.autoTicket(numberOfTickets);
+        LottoTickets lottoTicket = LottoTicketGenerator.autoTicket(numberOfTickets);
 
         //then
-        assertThat(lottoTicket).hasSize(10);
+        assertThat(lottoTicket.list()).hasSize(10);
     }
 }
