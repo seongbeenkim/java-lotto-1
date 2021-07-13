@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -21,8 +22,17 @@ public class LottoTicketGenerator {
     private LottoTicketGenerator() {
     }
 
-    public static LottoTicket autoTicket() {
+    public static List<LottoTicket> autoTicket(NumberOfTickets numberOfTickets) {
+        return IntStream.range(0, numberOfTickets.value())
+                .mapToObj(i -> createAutoTicket())
+                .collect(Collectors.toList());
+    }
+
+    private static LottoTicket createAutoTicket() {
         Collections.shuffle(lottoNumbers);
-        return new LottoTicket(lottoNumbers.subList(0, LOTTO_NUMBERS_COUNT));
+        List<LottoNumber> LottoTicketNumbers = lottoNumbers.subList(0, LOTTO_NUMBERS_COUNT);
+        LottoTicketNumbers.sort(Comparator.comparing(LottoNumber::value));
+        return new LottoTicket(LottoTicketNumbers);
+
     }
 }
