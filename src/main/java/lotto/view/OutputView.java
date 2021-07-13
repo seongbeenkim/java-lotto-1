@@ -38,12 +38,14 @@ public class OutputView {
         System.out.printf("[" + "%s" + "]", result);
     }
 
-    public static void printWinningStatistics(Map<LottoRank, Integer> ranksCount) {
+    public static void printWinningStatistics(Map<LottoRank, Integer> ranksCount, float profit) {
         System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---------");
         ranksCount.entrySet()
                 .forEach(OutputView::printWinningStatistic);
+
+        System.out.printf("총 수익률은 %.2f입니다.", profit);
     }
 
     private static void printWinningStatistic(Map.Entry<LottoRank, Integer> rank) {

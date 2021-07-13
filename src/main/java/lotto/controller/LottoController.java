@@ -19,6 +19,6 @@ public class LottoController {
         OutputView.printLottoTickets(lottoTickets);
         WinningNumbers winningNumbers = new WinningNumbers(InputView.inputWinningNumbers(), InputView.inputBonusNumber());
         WinningStatistics winningStatistics = new WinningStatistics(lottoTickets.match(winningNumbers));
-        OutputView.printWinningStatistics(winningStatistics.ranksCount());
+        OutputView.printWinningStatistics(winningStatistics.ranks(), winningStatistics.profit(numberOfTickets));
     }
 }

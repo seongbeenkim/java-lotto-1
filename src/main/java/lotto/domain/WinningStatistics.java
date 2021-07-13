@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import static lotto.domain.LottoRank.FIFTH;
+import static lotto.domain.LottoTicket.LOTTO_TICKET_PRICE;
 
 public class WinningStatistics {
     private final List<LottoResult> lottoResults;
@@ -15,21 +16,30 @@ public class WinningStatistics {
 
     public WinningStatistics(final List<LottoResult> lottoResults) {
         this.lottoResults = new ArrayList<>(lottoResults);
-        initialize();
+        countRanks();
     }
 
-    private void initialize() {
+    private void countRanks() {
         Arrays.stream(LottoRank.values())
                 .sorted(Comparator.reverseOrder())
                 .filter(lottoRank -> lottoRank.matchedCount() >= FIFTH.matchedCount())
                 .forEach(lottoRank -> ranks.put(lottoRank, 0));
-    }
 
-    public Map<LottoRank, Integer> ranksCount() {
         lottoResults.stream()
                 .map(LottoRank::findBy)
-                .forEach(lottoRank -> ranks.put(lottoRank, ranks.get(lottoRank) + 1));
+                .forEach(lottoRank -> ranks.put(lottoRank, ranks.getOrDefault(lottoRank, 0) + 1));
+    }
 
+    public Map<LottoRank, Integer> ranks() {
         return ranks;
+    }
+
+    public float profit(NumberOfTickets numberOfTickets) {
+        int totalPrize = ranks.entrySet()
+                .stream()
+                .mapToInt(entry -> entry.getKey().prize() * entry.getValue())
+                .sum();
+
+        return totalPrize / (float) (numberOfTickets.value() * LOTTO_TICKET_PRICE);
     }
 }

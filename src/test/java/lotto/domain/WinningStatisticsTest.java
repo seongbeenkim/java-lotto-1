@@ -1,9 +1,13 @@
 package lotto.domain;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -14,16 +18,18 @@ import static org.assertj.core.api.Assertions.entry;
 import static org.assertj.core.api.Assertions.tuple;
 
 public class WinningStatisticsTest {
+    private WinningStatistics winningStatistics;
+
+    @BeforeEach
+    void setUp() {
+        winningStatistics = new WinningStatistics(createLottoResults());
+    }
 
     @Test
-    @DisplayName("당첨 등수와 당첨 등수에 해당하는 개수를 반환한다.")
+    @DisplayName("당첨 등수와 당첨 등수에 해당하는 갯수를 반환한다.")
     void ranksCount() {
-
-        //given
-        WinningStatistics winningStatistics = new WinningStatistics(createLottoResults());
-
-        //when
-        Map<LottoRank, Integer> ranks = winningStatistics.ranksCount();
+        //given //when
+        Map<LottoRank, Integer> ranks = winningStatistics.ranks();
 
         //then
         assertThat(ranks).hasSize(5)
@@ -36,6 +42,22 @@ public class WinningStatisticsTest {
                         tuple(LottoRank.FIFTH, 2)
                 );
 
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"6, false, 2000000.0f", "5, true, 30000.0f", "5, false, 1500.f", "4, false, 50.0f", "3, false, 5.0f", "2, false, 0.0f"})
+    @DisplayName("총 수익률을 반환한다.")
+    void profit(int matchedCount, boolean hasBonus, float expectedProfit) {
+        //given
+        LottoResult lottoResult = new LottoResult(entry(matchedCount, hasBonus));
+        NumberOfTickets numberOfTickets = new NumberOfTickets(1);
+        WinningStatistics winningStatistics = new WinningStatistics(Collections.singletonList(lottoResult));
+
+        //when
+        double profit = winningStatistics.profit(numberOfTickets);
+
+        //then
+        assertThat(profit).isEqualTo(expectedProfit);
     }
 
     private List<LottoResult> createLottoResults() {
