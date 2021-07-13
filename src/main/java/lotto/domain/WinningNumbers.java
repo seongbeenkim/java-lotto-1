@@ -4,7 +4,6 @@ import java.util.AbstractMap;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -25,7 +24,7 @@ public class WinningNumbers {
         this(toLottoNumbers(winningNumbers), LottoNumber.valueOf(bonusNumber));
     }
 
-    private static List<LottoNumber> toLottoNumbers(String winningNumbers) {
+    private static List<LottoNumber> toLottoNumbers(final String winningNumbers) {
         return Arrays.stream(winningNumbers.split(DEFUALT_DELIMITER))
                 .map(String::trim)
                 .map(Integer::parseInt)
@@ -39,7 +38,7 @@ public class WinningNumbers {
         this.bonusNumber = bonusNumber;
     }
 
-    private void validateCountOf(List<LottoNumber> winningNumbers, LottoNumber bonusNumber) {
+    private void validateCountOf(final List<LottoNumber> winningNumbers, final LottoNumber bonusNumber) {
         Set<LottoNumber> deduplicatedWinningNumbers = new HashSet<>(winningNumbers);
 
         if (deduplicatedWinningNumbers.contains(bonusNumber) || (deduplicatedWinningNumbers.size() != LOTTO_NUMBERS_COUNT)) {
@@ -47,7 +46,7 @@ public class WinningNumbers {
         }
     }
 
-    public Map.Entry<Integer, Boolean> match(LottoTicket lottoTicket) {
+    public LottoResult match(final LottoTicket lottoTicket) {
         List<LottoNumber> lottoNumbers = lottoTicket.lottoNumbers();
 
         int matchedCount = (int) lottoNumbers.stream()
@@ -55,7 +54,7 @@ public class WinningNumbers {
                 .count();
 
         boolean hasBonusNumber = lottoNumbers.contains(bonusNumber);
-        return new AbstractMap.SimpleEntry<>(matchedCount, hasBonusNumber);
+        return new LottoResult(new AbstractMap.SimpleEntry<>(matchedCount, hasBonusNumber));
     }
 
     @Override

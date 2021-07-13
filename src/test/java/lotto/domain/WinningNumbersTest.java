@@ -6,7 +6,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
-import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
@@ -51,15 +50,15 @@ public class WinningNumbersTest {
         LottoTicket secondRankTicket = new LottoTicket(secondRankLottoNumbers);
 
         //when
-        Map.Entry<Integer, Boolean> firstRank = winningNumbers.match(firstRankTicket);
-        Map.Entry<Integer, Boolean> secondRank = winningNumbers.match(secondRankTicket);
+        LottoResult firstRank = winningNumbers.match(firstRankTicket);
+        LottoResult secondRank = winningNumbers.match(secondRankTicket);
 
         //then
         assertAll(
-                () -> assertThat(firstRank.getKey()).isEqualTo(6),
-                () -> assertThat(firstRank.getValue()).isFalse(),
-                () -> assertThat(secondRank.getKey()).isEqualTo(5),
-                () -> assertThat(secondRank.getValue()).isTrue()
+                () -> assertThat(firstRank.matchedCount()).isEqualTo(6),
+                () -> assertThat(firstRank.hasBonusNumber()).isFalse(),
+                () -> assertThat(secondRank.matchedCount()).isEqualTo(5),
+                () -> assertThat(secondRank.hasBonusNumber()).isTrue()
         );
     }
 }
