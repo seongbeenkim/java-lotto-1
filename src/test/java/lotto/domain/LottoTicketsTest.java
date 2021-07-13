@@ -13,8 +13,8 @@ public class LottoTicketsTest {
     @DisplayName("로또 티켓들을 인자로 가진 로또 티켓 목록 객체를 생성한다.")
     void create() {
         //given
-        LottoTicket firstLottoTicket = new LottoTicket(1, 2, 3, 4, 5, 6);
-        LottoTicket secondLottoTicket = new LottoTicket(1, 2, 3, 4, 5, 7);
+        LottoTicket firstLottoTicket = new LottoTicket(LottoNumber.of(1, 2, 3, 4, 5, 6));
+        LottoTicket secondLottoTicket = new LottoTicket(LottoNumber.of(1, 2, 3, 4, 5, 7));
 
         //when
         LottoTickets lottoTickets = new LottoTickets(Arrays.asList(firstLottoTicket, secondLottoTicket));

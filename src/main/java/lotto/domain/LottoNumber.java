@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -27,9 +29,15 @@ public class LottoNumber {
         this.lottoNumber = lottoNumber;
     }
 
-    public static LottoNumber valueOf(final int number) {
-        validateBoundOf(number);
-        return lottoNumbers.get(number);
+    public static LottoNumber valueOf(final int lottoNumber) {
+        validateBoundOf(lottoNumber);
+        return lottoNumbers.get(lottoNumber);
+    }
+
+    public static List<LottoNumber> of(final int... lottoNumbers) {
+        return Arrays.stream(lottoNumbers)
+                .mapToObj(LottoNumber::valueOf)
+                .collect(Collectors.toList());
     }
 
     private static void validateBoundOf(final int lottoNumber) {

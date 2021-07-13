@@ -1,8 +1,11 @@
 package lotto.domain;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
@@ -28,6 +31,16 @@ public class LottoNumberTest {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> LottoNumber.valueOf(invalidLottoNumber))
                 .withMessage("로또 번호는 1 ~ 45여야 합니다.");
+    }
+
+    @Test
+    @DisplayName("여러 숫자를 인자로 받아, 인자의 수 만큼의 로또 번호를 반환한다.")
+    void of() {
+        //given //when
+        List<LottoNumber> firstLottoNumbers = LottoNumber.of(1, 2, 3, 4, 5, 6);
+
+        //then
+        assertThat(firstLottoNumbers).hasSize(6);
     }
 }
 
