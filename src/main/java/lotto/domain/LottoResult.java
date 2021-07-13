@@ -9,11 +9,15 @@ public class LottoResult {
         this.lottoResult = lottoResult;
     }
 
-    public Integer matchedCount() {
+    public int matchedCount() {
         return lottoResult.getKey();
     }
 
-    public Boolean hasBonusNumber() {
+    public boolean hasBonusNumber() {
         return lottoResult.getValue();
+    }
+
+    public boolean hasSame(int matchedCount) {
+        return lottoResult.getKey() == matchedCount;
     }
 }
