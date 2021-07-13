@@ -6,9 +6,11 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class WinningNumbersTest {
 
@@ -34,5 +36,30 @@ public class WinningNumbersTest {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new WinningNumbers(winningNumbers, bonusNumber))
                 .withMessage("서로 다른 번호가 7개여야 합니다.");
+    }
+
+    @Test
+    @DisplayName("당첨 번호를 인자로 받아 각 로또 티켓과 비교한 결과를 반환한다.")
+    void match() {
+        //given
+        List<LottoNumber> firstRankLottoNumbers = LottoNumber.of(1, 2, 3, 4, 5, 6);
+        LottoNumber bonusNumber = LottoNumber.valueOf(7);
+        WinningNumbers winningNumbers = new WinningNumbers(firstRankLottoNumbers, bonusNumber);
+
+        List<LottoNumber> secondRankLottoNumbers = LottoNumber.of(1, 2, 3, 4, 5, 7);
+        LottoTicket firstRankTicket = new LottoTicket(firstRankLottoNumbers);
+        LottoTicket secondRankTicket = new LottoTicket(secondRankLottoNumbers);
+
+        //when
+        Map.Entry<Integer, Boolean> firstRank = winningNumbers.match(firstRankTicket);
+        Map.Entry<Integer, Boolean> secondRank = winningNumbers.match(secondRankTicket);
+
+        //then
+        assertAll(
+                () -> assertThat(firstRank.getKey()).isEqualTo(6),
+                () -> assertThat(firstRank.getValue()).isFalse(),
+                () -> assertThat(secondRank.getKey()).isEqualTo(5),
+                () -> assertThat(secondRank.getValue()).isTrue()
+        );
     }
 }

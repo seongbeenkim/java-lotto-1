@@ -1,8 +1,10 @@
 package lotto.domain;
 
+import java.util.AbstractMap;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -43,6 +45,17 @@ public class WinningNumbers {
         if (deduplicatedWinningNumbers.contains(bonusNumber) || (deduplicatedWinningNumbers.size() != LOTTO_NUMBERS_COUNT)) {
             throw new IllegalArgumentException("서로 다른 번호가 7개여야 합니다.");
         }
+    }
+
+    public Map.Entry<Integer, Boolean> match(LottoTicket lottoTicket) {
+        List<LottoNumber> lottoNumbers = lottoTicket.lottoNumbers();
+
+        int matchedCount = (int) lottoNumbers.stream()
+                .filter(winningNumbers::contains)
+                .count();
+
+        boolean hasBonusNumber = lottoNumbers.contains(bonusNumber);
+        return new AbstractMap.SimpleEntry<>(matchedCount, hasBonusNumber);
     }
 
     @Override
