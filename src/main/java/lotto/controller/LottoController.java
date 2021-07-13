@@ -14,5 +14,6 @@ public class LottoController {
         NumberOfTickets numberOfTickets = purchaseAmount.numberOfTickets();
         OutputView.printNumberOfTickets(numberOfTickets);
         LottoTickets lottoTickets = LottoTicketGenerator.autoTicket(numberOfTickets);
+        OutputView.printLottoTickets(lottoTickets);
     }
 }
