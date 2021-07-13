@@ -18,7 +18,7 @@ public enum LottoRank {
         this.prize = prize;
     }
 
-    public static LottoRank findBy(LottoResult lottoResult) {
+    public static LottoRank findBy(final LottoResult lottoResult) {
         LottoRank rank = Arrays.stream(values())
                 .filter(lottoRank -> lottoResult.hasSame(lottoRank.matchedCount))
                 .findFirst()

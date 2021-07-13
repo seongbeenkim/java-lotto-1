@@ -34,7 +34,7 @@ public class WinningStatistics {
         return ranks;
     }
 
-    public float profit(NumberOfTickets numberOfTickets) {
+    public float profit(final NumberOfTickets numberOfTickets) {
         int totalPrize = ranks.entrySet()
                 .stream()
                 .mapToInt(entry -> entry.getKey().prize() * entry.getValue())

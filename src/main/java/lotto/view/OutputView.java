@@ -15,7 +15,7 @@ public class OutputView {
     private OutputView() {
     }
 
-    public static void printNumberOfTickets(NumberOfTickets numberOfTickets) {
+    public static void printNumberOfTickets(final NumberOfTickets numberOfTickets) {
         System.out.printf("%d개를 구매했습니다.", numberOfTickets.value());
     }
 
@@ -27,7 +27,7 @@ public class OutputView {
         System.out.println();
     }
 
-    private static void printLottoTicket(List<LottoNumber> lottoNumbers) {
+    private static void printLottoTicket(final List<LottoNumber> lottoNumbers) {
         System.out.println();
 
         String result = lottoNumbers.stream()
@@ -38,7 +38,7 @@ public class OutputView {
         System.out.printf("[" + "%s" + "]", result);
     }
 
-    public static void printWinningStatistics(Map<LottoRank, Integer> ranksCount, float profit) {
+    public static void printWinningStatistics(final Map<LottoRank, Integer> ranksCount, final float profit) {
         System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---------");
@@ -48,7 +48,7 @@ public class OutputView {
         System.out.printf("총 수익률은 %.2f입니다.", profit);
     }
 
-    private static void printWinningStatistic(Map.Entry<LottoRank, Integer> rank) {
+    private static void printWinningStatistic(final Map.Entry<LottoRank, Integer> rank) {
         if (rank.getKey().equals(LottoRank.SECOND)) {
             System.out.printf("%d개 일치, 보너스 볼 일치(%d원) - %d개 \n", rank.getKey().matchedCount(), rank.getKey().prize(), rank.getValue());
             return;

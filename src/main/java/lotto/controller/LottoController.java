@@ -22,16 +22,16 @@ public class LottoController {
         OutputView.printWinningStatistics(winningStatistics.ranks(), winningStatistics.profit(numberOfTickets));
     }
 
-    private NumberOfTickets numberOfTicketsFrom(String inputPurchaseAmount) {
+    private NumberOfTickets numberOfTicketsFrom(final String inputPurchaseAmount) {
         PurchaseAmount purchaseAmount = new PurchaseAmount(inputPurchaseAmount);
         return purchaseAmount.numberOfTickets();
     }
 
-    private LottoTickets buyLottoTickets(NumberOfTickets numberOfTickets) {
+    private LottoTickets buyLottoTickets(final NumberOfTickets numberOfTickets) {
         return LottoTicketGenerator.autoTicket(numberOfTickets);
     }
 
-    private WinningStatistics winningStatisticsOf(LottoTickets lottoTickets, String inputWinningNumbers, String inputBonusNumber) {
+    private WinningStatistics winningStatisticsOf(final LottoTickets lottoTickets, final String inputWinningNumbers, final String inputBonusNumber) {
         WinningNumbers winningNumbers = new WinningNumbers(inputWinningNumbers, inputBonusNumber);
         return new WinningStatistics(lottoTickets.match(winningNumbers));
     }
