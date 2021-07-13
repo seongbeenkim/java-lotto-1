@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -10,17 +9,15 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 
 public class LottoNumberTest {
 
-    @Test
-    @DisplayName("하나의 로또 번호를 생성한다.")
-    void create() {
-        //given
-        int number = 1;
-
-        //when
-        LottoNumber lottoNumber = new LottoNumber(number);
+    @ParameterizedTest
+    @ValueSource(ints = {1, 45})
+    @DisplayName("전달받은 숫자의 로또 번호 객체를 반환한다.")
+    void valueOf(int number) {
+        //given //when
+        LottoNumber lottoNumber = LottoNumber.valueOf(number);
 
         //then
-        assertThat(lottoNumber).isEqualTo(new LottoNumber(number));
+        assertThat(lottoNumber.value()).isEqualTo(number);
     }
 
     @ParameterizedTest
@@ -29,7 +26,7 @@ public class LottoNumberTest {
     void validate(int invalidLottoNumber) {
         //given //when //then
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new LottoNumber(invalidLottoNumber))
+                .isThrownBy(() -> LottoNumber.valueOf(invalidLottoNumber))
                 .withMessage("로또 번호는 1 ~ 45여야 합니다.");
     }
 }

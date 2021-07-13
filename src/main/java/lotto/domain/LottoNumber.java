@@ -1,19 +1,38 @@
 package lotto.domain;
 
+import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class LottoNumber {
+    private static final Map<Integer, LottoNumber> lottoNumbers = generateLottoNumbers();
     private static final int LOTTO_NUMBER_MIN_BOUND = 1;
     private static final int LOTTO_NUMBER_MAX_BOUND = 45;
 
-    private int lottoNumber;
+    private final int lottoNumber;
 
-    public LottoNumber(final int lottoNumber) {
-        validateBoundOf(lottoNumber);
+    private static Map<Integer, LottoNumber> generateLottoNumbers() {
+        return IntStream.rangeClosed(LOTTO_NUMBER_MIN_BOUND, LOTTO_NUMBER_MAX_BOUND)
+                .mapToObj(LottoNumber::new)
+                .collect(Collectors.toMap(LottoNumber::value, Function.identity()));
+    }
+
+    public int value() {
+        return lottoNumber;
+    }
+
+    private LottoNumber(final int lottoNumber) {
         this.lottoNumber = lottoNumber;
     }
 
-    private void validateBoundOf(int lottoNumber) {
+    public static LottoNumber valueOf(final int number) {
+        validateBoundOf(number);
+        return lottoNumbers.get(number);
+    }
+
+    private static void validateBoundOf(final int lottoNumber) {
         if (lottoNumber < LOTTO_NUMBER_MIN_BOUND || lottoNumber > LOTTO_NUMBER_MAX_BOUND) {
             throw new IllegalArgumentException("로또 번호는 1 ~ 45여야 합니다.");
         }
