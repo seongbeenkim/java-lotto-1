@@ -12,13 +12,27 @@ import lotto.view.OutputView;
 public class LottoController {
 
     public void run() {
-        PurchaseAmount purchaseAmount = new PurchaseAmount(InputView.inputPurchaseAmount());
-        NumberOfTickets numberOfTickets = purchaseAmount.numberOfTickets();
+        NumberOfTickets numberOfTickets = numberOfTicketsFrom(InputView.inputPurchaseAmount());
         OutputView.printNumberOfTickets(numberOfTickets);
-        LottoTickets lottoTickets = LottoTicketGenerator.autoTicket(numberOfTickets);
+
+        LottoTickets lottoTickets = buyLottoTickets(numberOfTickets);
         OutputView.printLottoTickets(lottoTickets);
-        WinningNumbers winningNumbers = new WinningNumbers(InputView.inputWinningNumbers(), InputView.inputBonusNumber());
-        WinningStatistics winningStatistics = new WinningStatistics(lottoTickets.match(winningNumbers));
+
+        WinningStatistics winningStatistics = winningStatisticsOf(lottoTickets, InputView.inputWinningNumbers(), InputView.inputBonusNumber());
         OutputView.printWinningStatistics(winningStatistics.ranks(), winningStatistics.profit(numberOfTickets));
+    }
+
+    private NumberOfTickets numberOfTicketsFrom(String inputPurchaseAmount) {
+        PurchaseAmount purchaseAmount = new PurchaseAmount(inputPurchaseAmount);
+        return purchaseAmount.numberOfTickets();
+    }
+
+    private LottoTickets buyLottoTickets(NumberOfTickets numberOfTickets) {
+        return LottoTicketGenerator.autoTicket(numberOfTickets);
+    }
+
+    private WinningStatistics winningStatisticsOf(LottoTickets lottoTickets, String inputWinningNumbers, String inputBonusNumber) {
+        WinningNumbers winningNumbers = new WinningNumbers(inputWinningNumbers, inputBonusNumber);
+        return new WinningStatistics(lottoTickets.match(winningNumbers));
     }
 }
