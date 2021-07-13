@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.LottoResult;
 import lotto.domain.LottoTicketGenerator;
 import lotto.domain.LottoTickets;
 import lotto.domain.NumberOfTickets;
@@ -7,6 +8,8 @@ import lotto.domain.PurchaseAmount;
 import lotto.domain.WinningNumbers;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+
+import java.util.List;
 
 public class LottoController {
 
@@ -17,5 +20,6 @@ public class LottoController {
         LottoTickets lottoTickets = LottoTicketGenerator.autoTicket(numberOfTickets);
         OutputView.printLottoTickets(lottoTickets);
         WinningNumbers winningNumbers = new WinningNumbers(InputView.inputWinningNumbers(), InputView.inputBonusNumber());
+        List<LottoResult> lottoResults = lottoTickets.match(winningNumbers);
     }
 }
