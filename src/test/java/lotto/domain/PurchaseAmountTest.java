@@ -29,4 +29,17 @@ public class PurchaseAmountTest {
                 .isThrownBy(() -> new PurchaseAmount(999))
                 .withMessage("최소 구입 금액은 1,000원 이상이여야 합니다.");
     }
+
+    @Test
+    @DisplayName("구입할 수 있는 로또 티켓의 장수를 반환한다.")
+    void tickets() {
+        //given
+        PurchaseAmount purchaseAmount = new PurchaseAmount(1000);
+
+        //when
+        NumberOfTickets numberOfTickets = purchaseAmount.numberOfTickets();
+
+        //then
+        assertThat(numberOfTickets.value()).isEqualTo(1);
+    }
 }
