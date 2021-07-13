@@ -1,12 +1,13 @@
 package lotto.domain;
 
-import java.util.Map;
+import java.util.AbstractMap;
+import java.util.Map.Entry;
 
 public class LottoResult {
-    private final Map.Entry<Integer, Boolean> lottoResult;
+    private final Entry<Integer, Boolean> lottoResult;
 
-    public LottoResult(final Map.Entry<Integer, Boolean> lottoResult) {
-        this.lottoResult = lottoResult;
+    public LottoResult(final Entry<Integer, Boolean> lottoResult) {
+        this.lottoResult = new AbstractMap.SimpleEntry<>(lottoResult);
     }
 
     public int matchedCount() {

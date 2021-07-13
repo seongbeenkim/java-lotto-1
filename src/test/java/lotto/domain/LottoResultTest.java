@@ -3,10 +3,10 @@ package lotto.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.AbstractMap;
-import java.util.Map;
+import java.util.Map.Entry;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.entry;
 
 public class LottoResultTest {
 
@@ -15,7 +15,7 @@ public class LottoResultTest {
     void create() {
         //given
         int matchedCount = 1;
-        Map.Entry<Integer, Boolean> matchedResult = new AbstractMap.SimpleEntry<>(matchedCount, true);
+        Entry<Integer, Boolean> matchedResult = entry(matchedCount, true);
 
         //when
         LottoResult lottoResult = new LottoResult(matchedResult);
@@ -30,7 +30,7 @@ public class LottoResultTest {
     void hasSame() {
         //given
         int matchedCount = 10;
-        Map.Entry<Integer, Boolean> matchedResult = new AbstractMap.SimpleEntry<>(matchedCount, true);
+        Entry<Integer, Boolean> matchedResult = entry(matchedCount, true);
         LottoResult lottoResult = new LottoResult(matchedResult);
 
         //when

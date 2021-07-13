@@ -4,9 +4,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import java.util.AbstractMap;
-
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.entry;
 
 public class LottoRankTest {
 
@@ -16,7 +15,7 @@ public class LottoRankTest {
     @DisplayName("로또 비교 결과 객체에 해당하는 로또 등수를 반환한다.")
     void findBy(int matchedCount, boolean hasBonusNumber, String rankName) {
         //given
-        LottoResult lottoResult = new LottoResult(new AbstractMap.SimpleEntry<>(matchedCount, hasBonusNumber));
+        LottoResult lottoResult = new LottoResult(entry(matchedCount, hasBonusNumber));
 
         //when
         LottoRank rank = LottoRank.findBy(lottoResult);

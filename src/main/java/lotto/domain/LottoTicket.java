@@ -17,7 +17,7 @@ public class LottoTicket {
         this.lottoNumbers = new ArrayList<>(lottoNumbers);
     }
 
-    private void validateCountOf(List<LottoNumber> lottoNumbers) {
+    private void validateCountOf(final List<LottoNumber> lottoNumbers) {
         Set<LottoNumber> deduplicatedLottoNumbers = new HashSet<>(lottoNumbers);
 
         if (deduplicatedLottoNumbers.size() != LOTTO_NUMBERS_COUNT) {
