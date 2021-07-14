@@ -2,6 +2,8 @@ package lotto.domain;
 
 import java.util.Objects;
 
+import static lotto.domain.LottoTicket.LOTTO_TICKET_PRICE;
+
 public class NumberOfTickets {
     private static final int NUMBER_OF_TICKETS_MIN_BOUND = 1;
 
@@ -20,6 +22,10 @@ public class NumberOfTickets {
 
     public int value() {
         return numberOfTickets;
+    }
+
+    public float purchaseAmount() {
+        return (float) numberOfTickets * LOTTO_TICKET_PRICE;
     }
 
     @Override

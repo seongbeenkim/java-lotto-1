@@ -24,11 +24,15 @@ public enum LottoRank {
                 .findFirst()
                 .orElse(NONE);
 
-        if ((rank.matchedCount == SECOND.matchedCount) && !lottoResult.hasBonusNumber()) {
+        if (isThirdRank(lottoResult, rank)) {
             return THIRD;
         }
 
         return rank;
+    }
+
+    private static boolean isThirdRank(LottoResult lottoResult, LottoRank rank) {
+        return (rank.matchedCount == SECOND.matchedCount) && !lottoResult.hasBonusNumber();
     }
 
     public int prize() {
@@ -37,5 +41,9 @@ public enum LottoRank {
 
     public int matchedCount() {
         return matchedCount;
+    }
+
+    public int multiplyPrizeBy(final int numberOfRank) {
+        return prize * numberOfRank;
     }
 }
