@@ -37,9 +37,9 @@ public class PurchaseAmountTest {
         PurchaseAmount purchaseAmount = new PurchaseAmount(1000);
 
         //when
-        NumberOfTickets numberOfTickets = purchaseAmount.numberOfTickets();
+        NumberOfTickets numberOfTickets = purchaseAmount.convertToNumberOfTickets();
 
         //then
-        assertThat(numberOfTickets.value()).isEqualTo(1);
+        assertThat(numberOfTickets.getNumberOfTickets()).isEqualTo(1);
     }
 }

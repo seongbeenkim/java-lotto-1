@@ -25,7 +25,7 @@ public class LottoTicket {
         }
     }
 
-    public List<LottoNumber> lottoNumbers() {
+    public List<LottoNumber> getLottoNumbers() {
         return Collections.unmodifiableList(lottoNumbers);
     }
 }

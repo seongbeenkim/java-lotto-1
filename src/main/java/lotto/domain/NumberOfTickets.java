@@ -20,11 +20,11 @@ public class NumberOfTickets {
         }
     }
 
-    public int value() {
+    public int getNumberOfTickets() {
         return numberOfTickets;
     }
 
-    public float purchaseAmount() {
+    public float convertToPurchaseAmount() {
         return (float) numberOfTickets * LOTTO_TICKET_PRICE;
     }
 

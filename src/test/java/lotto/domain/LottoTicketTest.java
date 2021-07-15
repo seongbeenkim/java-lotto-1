@@ -20,7 +20,7 @@ public class LottoTicketTest {
         LottoTicket lottoTicket = new LottoTicket(lottoNumbers);
 
         //then
-        assertThat(lottoTicket.lottoNumbers())
+        assertThat(lottoTicket.getLottoNumbers())
                 .hasSize(6)
                 .extracting("lottoNumber")
                 .contains(1, 2, 3, 4, 5, 6);

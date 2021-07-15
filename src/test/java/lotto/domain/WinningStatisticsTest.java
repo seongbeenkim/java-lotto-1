@@ -29,7 +29,7 @@ public class WinningStatisticsTest {
     @DisplayName("당첨 등수와 당첨 등수에 해당하는 갯수를 반환한다.")
     void ranksCount() {
         //given //when
-        Map<LottoRank, Integer> ranks = winningStatistics.ranks();
+        Map<LottoRank, Integer> ranks = winningStatistics.getRanks();
 
         //then
         assertThat(ranks).hasSize(5)
@@ -54,7 +54,7 @@ public class WinningStatisticsTest {
         WinningStatistics winningStatistics = new WinningStatistics(Collections.singletonList(lottoResult));
 
         //when
-        double profit = winningStatistics.profit(numberOfTickets);
+        double profit = winningStatistics.calculateProfit(numberOfTickets);
 
         //then
         assertThat(profit).isEqualTo(expectedProfit);

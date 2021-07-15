@@ -12,26 +12,26 @@ import lotto.view.OutputView;
 public class LottoController {
 
     public void run() {
-        NumberOfTickets numberOfTickets = numberOfTicketsFrom(InputView.inputPurchaseAmount());
+        NumberOfTickets numberOfTickets = extractNumberOfTicketsFrom(InputView.inputPurchaseAmount());
         OutputView.printNumberOfTickets(numberOfTickets);
 
         LottoTickets lottoTickets = buyLottoTickets(numberOfTickets);
         OutputView.printLottoTickets(lottoTickets);
 
-        WinningStatistics winningStatistics = winningStatisticsOf(lottoTickets, InputView.inputWinningNumbers(), InputView.inputBonusNumber());
-        OutputView.printWinningStatistics(winningStatistics.ranks(), winningStatistics.profit(numberOfTickets));
+        WinningStatistics winningStatistics = quantifyLottoResults(lottoTickets, InputView.inputWinningNumbers(), InputView.inputBonusNumber());
+        OutputView.printWinningStatistics(winningStatistics.getRanks(), winningStatistics.calculateProfit(numberOfTickets));
     }
 
-    private NumberOfTickets numberOfTicketsFrom(final String inputPurchaseAmount) {
+    private NumberOfTickets extractNumberOfTicketsFrom(final String inputPurchaseAmount) {
         PurchaseAmount purchaseAmount = new PurchaseAmount(inputPurchaseAmount);
-        return purchaseAmount.numberOfTickets();
+        return purchaseAmount.convertToNumberOfTickets();
     }
 
     private LottoTickets buyLottoTickets(final NumberOfTickets numberOfTickets) {
-        return LottoTicketGenerator.autoTicket(numberOfTickets);
+        return LottoTicketGenerator.createAutoTickets(numberOfTickets);
     }
 
-    private WinningStatistics winningStatisticsOf(final LottoTickets lottoTickets, final String inputWinningNumbers, final String inputBonusNumber) {
+    private WinningStatistics quantifyLottoResults(final LottoTickets lottoTickets, final String inputWinningNumbers, final String inputBonusNumber) {
         WinningNumbers winningNumbers = new WinningNumbers(inputWinningNumbers, inputBonusNumber);
         return new WinningStatistics(lottoTickets.match(winningNumbers));
     }

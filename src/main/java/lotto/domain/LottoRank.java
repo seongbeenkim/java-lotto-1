@@ -35,11 +35,11 @@ public enum LottoRank {
         return (rank.matchedCount == SECOND.matchedCount) && !lottoResult.hasBonusNumber();
     }
 
-    public int prize() {
+    public int getPrize() {
         return prize;
     }
 
-    public int matchedCount() {
+    public int getMatchedCount() {
         return matchedCount;
     }
 

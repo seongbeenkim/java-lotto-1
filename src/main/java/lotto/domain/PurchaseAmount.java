@@ -24,7 +24,7 @@ public class PurchaseAmount {
         }
     }
 
-    public NumberOfTickets numberOfTickets() {
+    public NumberOfTickets convertToNumberOfTickets() {
         return new NumberOfTickets(purchaseAmount / LOTTO_TICKET_PRICE);
     }
 

@@ -23,7 +23,7 @@ public class WinningStatistics {
     private void countRanks() {
         Arrays.stream(LottoRank.values())
                 .sorted(Comparator.reverseOrder())
-                .filter(lottoRank -> lottoRank.matchedCount() >= FIFTH.matchedCount())
+                .filter(lottoRank -> lottoRank.getMatchedCount() >= FIFTH.getMatchedCount())
                 .forEach(lottoRank -> ranks.put(lottoRank, EMPTY));
 
         lottoResults.stream()
@@ -31,16 +31,16 @@ public class WinningStatistics {
                 .forEach(lottoRank -> ranks.put(lottoRank, ranks.getOrDefault(lottoRank, EMPTY) + 1));
     }
 
-    public Map<LottoRank, Integer> ranks() {
+    public Map<LottoRank, Integer> getRanks() {
         return ranks;
     }
 
-    public float profit(final NumberOfTickets numberOfTickets) {
+    public float calculateProfit(final NumberOfTickets numberOfTickets) {
         int totalPrize = ranks.entrySet()
                 .stream()
                 .mapToInt(entry -> entry.getKey().multiplyPrizeBy(entry.getValue()))
                 .sum();
 
-        return totalPrize / numberOfTickets.purchaseAmount();
+        return totalPrize / numberOfTickets.convertToPurchaseAmount();
     }
 }

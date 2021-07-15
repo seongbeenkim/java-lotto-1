@@ -27,12 +27,12 @@ public class LottoRankTest {
     @ParameterizedTest
     @CsvSource(value = {"FIRST, 2000000000", "SECOND, 30000000", "THIRD, 1500000", "FOURTH, 50000", "FIFTH, 5000", "NONE, 0"})
     @DisplayName("당첨 등수에 맞는 상금을 반환하는 기능")
-    void prize(String rankName, int expectedPrize) {
+    void getPrize(String rankName, int expectedPrize) {
         //given
         LottoRank lottoRank = LottoRank.valueOf(rankName);
 
         //when
-        int prize = lottoRank.prize();
+        int prize = lottoRank.getPrize();
 
         //then
         assertThat(prize).isEqualTo(expectedPrize);

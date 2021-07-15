@@ -16,13 +16,13 @@ public class OutputView {
     }
 
     public static void printNumberOfTickets(final NumberOfTickets numberOfTickets) {
-        System.out.printf("%d개를 구매했습니다.", numberOfTickets.value());
+        System.out.printf("%d개를 구매했습니다.", numberOfTickets.getNumberOfTickets());
     }
 
     public static void printLottoTickets(LottoTickets lottoTickets) {
         lottoTickets.list()
                 .stream()
-                .map(LottoTicket::lottoNumbers)
+                .map(LottoTicket::getLottoNumbers)
                 .forEach(OutputView::printLottoTicket);
         System.out.println();
     }
@@ -50,10 +50,10 @@ public class OutputView {
 
     private static void printWinningStatistic(final Map.Entry<LottoRank, Integer> rank) {
         if (rank.getKey().equals(LottoRank.SECOND)) {
-            System.out.printf("%d개 일치, 보너스 볼 일치(%d원) - %d개 \n", rank.getKey().matchedCount(), rank.getKey().prize(), rank.getValue());
+            System.out.printf("%d개 일치, 보너스 볼 일치(%d원) - %d개 \n", rank.getKey().getMatchedCount(), rank.getKey().getPrize(), rank.getValue());
             return;
         }
 
-        System.out.printf("%d개 일치 (%d원)- %d개 \n", rank.getKey().matchedCount(), rank.getKey().prize(), rank.getValue());
+        System.out.printf("%d개 일치 (%d원)- %d개 \n", rank.getKey().getMatchedCount(), rank.getKey().getPrize(), rank.getValue());
     }
 }

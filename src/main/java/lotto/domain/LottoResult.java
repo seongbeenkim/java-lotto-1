@@ -10,7 +10,7 @@ public class LottoResult {
         this.lottoResult = new AbstractMap.SimpleEntry<>(lottoResult);
     }
 
-    public int matchedCount() {
+    public int getMatchedCount() {
         return lottoResult.getKey();
     }
 

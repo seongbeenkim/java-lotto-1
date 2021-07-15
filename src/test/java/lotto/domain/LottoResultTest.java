@@ -21,7 +21,7 @@ public class LottoResultTest {
         LottoResult lottoResult = new LottoResult(matchedResult);
 
         //then
-        assertThat(lottoResult.matchedCount()).isEqualTo(matchedCount);
+        assertThat(lottoResult.getMatchedCount()).isEqualTo(matchedCount);
         assertThat(lottoResult.hasBonusNumber()).isTrue();
     }
 

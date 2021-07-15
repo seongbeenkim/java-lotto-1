@@ -19,7 +19,7 @@ public class LottoTickets {
     public List<LottoResult> match(final WinningNumbers winningNumbers) {
         return lottoTickets.stream()
                 .map(winningNumbers::match)
-                .filter(lottoResult -> lottoResult.matchedCount() >= LottoRank.FIFTH.matchedCount())
+                .filter(lottoResult -> lottoResult.getMatchedCount() >= LottoRank.FIFTH.getMatchedCount())
                 .collect(Collectors.toList());
     }
 }

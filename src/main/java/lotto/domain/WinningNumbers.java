@@ -47,7 +47,7 @@ public class WinningNumbers {
     }
 
     public LottoResult match(final LottoTicket lottoTicket) {
-        List<LottoNumber> lottoNumbers = lottoTicket.lottoNumbers();
+        List<LottoNumber> lottoNumbers = lottoTicket.getLottoNumbers();
 
         int matchedCount = (int) lottoNumbers.stream()
                 .filter(winningNumbers::contains)

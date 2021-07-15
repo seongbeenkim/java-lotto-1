@@ -55,9 +55,9 @@ public class WinningNumbersTest {
 
         //then
         assertAll(
-                () -> assertThat(firstRank.matchedCount()).isEqualTo(6),
+                () -> assertThat(firstRank.getMatchedCount()).isEqualTo(6),
                 () -> assertThat(firstRank.hasBonusNumber()).isFalse(),
-                () -> assertThat(secondRank.matchedCount()).isEqualTo(5),
+                () -> assertThat(secondRank.getMatchedCount()).isEqualTo(5),
                 () -> assertThat(secondRank.hasBonusNumber()).isTrue()
         );
     }
