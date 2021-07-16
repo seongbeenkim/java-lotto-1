@@ -28,4 +28,14 @@ public class LottoTicket {
     public List<LottoNumber> getLottoNumbers() {
         return Collections.unmodifiableList(lottoNumbers);
     }
+
+    public int match(final List<LottoNumber> winningNumbers) {
+        return (int) lottoNumbers.stream()
+                .filter(winningNumbers::contains)
+                .count();
+    }
+
+    public boolean contains(final LottoNumber bonusNumber) {
+        return lottoNumbers.contains(bonusNumber);
+    }
 }

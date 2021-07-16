@@ -34,13 +34,8 @@ public class WinningNumbers {
     }
 
     public LottoResult match(final LottoTicket lottoTicket) {
-        List<LottoNumber> lottoNumbers = lottoTicket.getLottoNumbers();
-
-        int matchedCount = (int) lottoNumbers.stream()
-                .filter(winningNumbers::contains)
-                .count();
-
-        boolean hasBonusNumber = lottoNumbers.contains(bonusNumber);
+        int matchedCount = lottoTicket.match(winningNumbers);
+        boolean hasBonusNumber = lottoTicket.contains(bonusNumber);
         return new LottoResult(new AbstractMap.SimpleEntry<>(matchedCount, hasBonusNumber));
     }
 
