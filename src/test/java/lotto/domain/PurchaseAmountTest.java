@@ -23,11 +23,20 @@ public class PurchaseAmountTest {
 
     @Test
     @DisplayName("1,000원 미만일 경우, 예외가 발생한다.")
-    void validate() {
-        //given //when //then
+    void validateMinimum() {
+        //when //then
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new PurchaseAmount(999))
                 .withMessage("최소 구입 금액은 1,000원 이상이여야 합니다.");
+    }
+
+    @Test
+    @DisplayName("1,000원 단위가 아닐 경우, 예외가 발생한다.")
+    void validateUnit() {
+        //when //then
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new PurchaseAmount(1001))
+                .withMessage("구입 금액은 1,000원 단위여야 합니다.");
     }
 
     @Test
