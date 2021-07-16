@@ -9,10 +9,6 @@ public class PurchaseAmount {
 
     private final int purchaseAmount;
 
-    public PurchaseAmount(final String inputPurchaseAmount) {
-        this(Integer.parseInt(inputPurchaseAmount));
-    }
-
     public PurchaseAmount(final int purchaseAmount) {
         validateBoundOf(purchaseAmount);
         this.purchaseAmount = purchaseAmount;

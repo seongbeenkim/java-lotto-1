@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import java.util.AbstractMap;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -11,25 +10,13 @@ import java.util.stream.Collectors;
 import static lotto.domain.LottoTicket.LOTTO_NUMBERS_COUNT;
 
 public class WinningNumbers {
-    private static final String DEFUALT_DELIMITER = ",";
-
     private final List<LottoNumber> winningNumbers;
     private final LottoNumber bonusNumber;
 
-    public WinningNumbers(final String winningNumbers, final String bonusNumber) {
-        this(toLottoNumbers(winningNumbers), LottoNumber.valueOf(Integer.parseInt(bonusNumber)));
-    }
-
-    public WinningNumbers(final String winningNumbers, final int bonusNumber) {
-        this(toLottoNumbers(winningNumbers), LottoNumber.valueOf(bonusNumber));
-    }
-
-    private static List<LottoNumber> toLottoNumbers(final String winningNumbers) {
-        return Arrays.stream(winningNumbers.split(DEFUALT_DELIMITER))
-                .map(String::trim)
-                .map(Integer::parseInt)
+    public WinningNumbers(final List<Integer> winningNumbers, final int bonusNumber) {
+        this(winningNumbers.stream()
                 .map(LottoNumber::valueOf)
-                .collect(Collectors.toList());
+                .collect(Collectors.toList()), LottoNumber.valueOf(bonusNumber));
     }
 
     public WinningNumbers(final List<LottoNumber> winningNumbers, final LottoNumber bonusNumber) {

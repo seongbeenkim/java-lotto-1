@@ -5,7 +5,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
@@ -31,9 +33,15 @@ public class WinningNumbersTest {
     @CsvSource(value = {"1, 2, 3, 4, 5, 5 : 6", "1, 2, 3, 4, 5, 6 : 6"}, delimiter = ':')
     @DisplayName("보너스 볼 포함 서로 다른 번호가 7개가 아닐 경우, 예외가 발생한다.")
     void validateCountOf(String winningNumbers, int bonusNumber) {
-        //given //when //then
+        // given
+        List<Integer> splitWinningNumber = Arrays.stream(winningNumbers.split(","))
+                .map(String::trim)
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+
+        // when //then
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new WinningNumbers(winningNumbers, bonusNumber))
+                .isThrownBy(() -> new WinningNumbers(splitWinningNumber, bonusNumber))
                 .withMessage("서로 다른 번호가 7개여야 합니다.");
     }
 

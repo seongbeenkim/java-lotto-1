@@ -27,7 +27,6 @@ public class LottoTicketsResponseTest {
         //then
         assertThat(lottoTicketsResponse.list()).hasSize(2)
                 .extracting("lottoNumbers")
-                .contains(Arrays.asList(1, 2, 3, 4, 5, 6),
-                        Arrays.asList(7, 8, 9, 10, 11, 12));
+                .contains(firstLottoNumbers, secondLottoNumbers);
     }
 }
