@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.enums.LottoRank;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;

@@ -6,11 +6,11 @@ import lotto.domain.NumberOfTickets;
 import lotto.domain.PurchaseAmount;
 import lotto.domain.WinningNumbers;
 import lotto.domain.WinningStatistics;
-import lotto.domain.dto.LottoTicketsResponse;
-import lotto.domain.dto.NumberOfTicketsRequest;
-import lotto.domain.dto.NumberOfTicketsResponse;
-import lotto.domain.dto.WinningStatisticsRequest;
-import lotto.domain.dto.WinningStatisticsResponse;
+import lotto.domain.dto.request.NumberOfTicketsRequest;
+import lotto.domain.dto.request.WinningStatisticsRequest;
+import lotto.domain.dto.response.LottoTicketsResponse;
+import lotto.domain.dto.response.NumberOfTicketsResponse;
+import lotto.domain.dto.response.WinningStatisticsResponse;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 

@@ -1,4 +1,4 @@
-package lotto.domain.dto;
+package lotto.domain.dto.response;
 
 import lotto.domain.NumberOfTickets;
 import org.junit.jupiter.api.DisplayName;

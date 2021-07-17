@@ -1,6 +1,6 @@
-package lotto.domain.dto;
+package lotto.domain.dto.response;
 
-import lotto.domain.LottoRank;
+import lotto.enums.LottoRank;
 
 import java.util.Collections;
 import java.util.LinkedHashMap;

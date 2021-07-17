@@ -1,9 +1,9 @@
-package lotto.domain.dto;
+package lotto.domain.dto.response;
 
-import lotto.domain.LottoRank;
 import lotto.domain.LottoResult;
 import lotto.domain.NumberOfTickets;
 import lotto.domain.WinningStatistics;
+import lotto.enums.LottoRank;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
