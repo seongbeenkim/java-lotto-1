@@ -35,7 +35,7 @@ public class LottoTicket {
                 .count();
     }
 
-    public boolean contains(final LottoNumber bonusNumber) {
-        return lottoNumbers.contains(bonusNumber);
+    public boolean contains(final LottoNumber lottoNumber) {
+        return lottoNumbers.contains(lottoNumber);
     }
 }

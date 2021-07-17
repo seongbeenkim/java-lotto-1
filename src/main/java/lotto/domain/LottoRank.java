@@ -31,7 +31,7 @@ public enum LottoRank {
         return rank;
     }
 
-    private static boolean isThirdRank(LottoResult lottoResult, LottoRank rank) {
+    private static boolean isThirdRank(final LottoResult lottoResult, final LottoRank rank) {
         return (rank.matchedCount == SECOND.matchedCount) && !lottoResult.hasBonusNumber();
     }
 
