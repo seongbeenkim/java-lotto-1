@@ -5,6 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.NullSource;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -14,6 +15,7 @@ import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.assertj.core.api.Assertions.entry;
 import static org.assertj.core.api.Assertions.tuple;
 
@@ -58,6 +60,16 @@ public class WinningStatisticsTest {
 
         //then
         assertThat(profit).isEqualTo(expectedProfit);
+    }
+
+    @ParameterizedTest
+    @NullSource
+    @DisplayName("로또 결과 리스트가 null일 경우, 예외가 발생한다.")
+    void validateNull(List<LottoResult> lottoResults) {
+        //when //then
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new WinningStatistics(lottoResults))
+                .withMessage("1개 이상의 로또 결과 목록이 존재해야 합니다.");
     }
 
     private List<LottoResult> createLottoResults() {

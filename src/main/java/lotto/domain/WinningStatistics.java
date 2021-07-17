@@ -7,28 +7,35 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import static lotto.domain.LottoRank.FIFTH;
-
 public class WinningStatistics {
     private static final int EMPTY = 0;
 
-    private final List<LottoResult> lottoResults;
     private final Map<LottoRank, Integer> ranks = new LinkedHashMap<>();
 
     public WinningStatistics(final List<LottoResult> lottoResults) {
-        this.lottoResults = new ArrayList<>(lottoResults);
-        countRanks();
+        validateNull(lottoResults);
+        initRanks();
+        countRanks(new ArrayList<>(lottoResults));
     }
 
-    private void countRanks() {
+    private void validateNull(List<LottoResult> lottoResults) {
+        if (lottoResults == null) {
+            throw new IllegalArgumentException("1개 이상의 로또 결과 목록이 존재해야 합니다.");
+        }
+    }
+
+    private void initRanks() {
         Arrays.stream(LottoRank.values())
                 .sorted(Comparator.reverseOrder())
-                .filter(lottoRank -> lottoRank.getMatchedCount() >= FIFTH.getMatchedCount())
+                .filter(LottoRank::isNotNoneRank)
                 .forEach(lottoRank -> ranks.put(lottoRank, EMPTY));
+    }
 
+    private void countRanks(final List<LottoResult> lottoResults) {
         lottoResults.stream()
                 .map(LottoRank::findBy)
-                .forEach(lottoRank -> ranks.put(lottoRank, ranks.getOrDefault(lottoRank, EMPTY) + 1));
+                .filter(LottoRank::isNotNoneRank)
+                .forEach(lottoRank -> ranks.put(lottoRank, ranks.get(lottoRank) + 1));
     }
 
     public Map<LottoRank, Integer> getRanks() {
@@ -36,9 +43,9 @@ public class WinningStatistics {
     }
 
     public float calculateProfit(final NumberOfTickets numberOfTickets) {
-        int totalPrize = ranks.entrySet()
+        int totalPrize = ranks.keySet()
                 .stream()
-                .mapToInt(entry -> entry.getKey().multiplyPrizeBy(entry.getValue()))
+                .mapToInt(rank -> rank.multiplyPrizeBy(ranks.get(rank)))
                 .sum();
 
         return totalPrize / numberOfTickets.convertToPurchaseAmount();

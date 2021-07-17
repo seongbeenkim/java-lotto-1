@@ -46,4 +46,8 @@ public enum LottoRank {
     public int multiplyPrizeBy(final int numberOfRank) {
         return prize * numberOfRank;
     }
+
+    public boolean isNotNoneRank() {
+        return !this.equals(LottoRank.NONE);
+    }
 }
