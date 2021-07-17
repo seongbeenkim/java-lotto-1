@@ -18,10 +18,10 @@ public class LottoTickets {
         return Collections.unmodifiableList(lottoTickets);
     }
 
-    public List<LottoResult> match(final WinningNumbers winningNumbers) {
-        return lottoTickets.stream()
+    public LottoResults match(final WinningNumbers winningNumbers) {
+        return new LottoResults(lottoTickets.stream()
                 .map(winningNumbers::match)
                 .filter(lottoResult -> lottoResult.getMatchedCount() >= LottoRank.FIFTH.getMatchedCount())
-                .collect(Collectors.toList());
+                .collect(Collectors.toList()));
     }
 }

@@ -38,9 +38,9 @@ public class LottoTicketsTest {
         LottoTickets lottoTickets = new LottoTickets(Arrays.asList(firstRankTicket, noneRankTicket));
 
         //when
-        List<LottoResult> lottoResults = lottoTickets.match(winningNumbers);
+        LottoResults lottoResults = lottoTickets.match(winningNumbers);
 
         //then
-        assertThat(lottoResults).hasSize(1);
+        assertThat(lottoResults.list()).hasSize(1);
     }
 }

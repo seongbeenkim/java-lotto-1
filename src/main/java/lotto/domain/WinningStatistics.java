@@ -2,11 +2,9 @@ package lotto.domain;
 
 import lotto.enums.LottoRank;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 public class WinningStatistics {
@@ -14,13 +12,13 @@ public class WinningStatistics {
 
     private final Map<LottoRank, Integer> ranks = new LinkedHashMap<>();
 
-    public WinningStatistics(final List<LottoResult> lottoResults) {
+    public WinningStatistics(final LottoResults lottoResults) {
         validateNull(lottoResults);
         initRanks();
-        countRanks(new ArrayList<>(lottoResults));
+        countRanks(lottoResults);
     }
 
-    private void validateNull(List<LottoResult> lottoResults) {
+    private void validateNull(LottoResults lottoResults) {
         if (lottoResults == null) {
             throw new IllegalArgumentException("1개 이상의 로또 결과 목록이 존재해야 합니다.");
         }
@@ -33,9 +31,9 @@ public class WinningStatistics {
                 .forEach(lottoRank -> ranks.put(lottoRank, EMPTY));
     }
 
-    private void countRanks(final List<LottoResult> lottoResults) {
-        lottoResults.stream()
-                .map(LottoRank::findBy)
+    private void countRanks(final LottoResults lottoResults) {
+        lottoResults.findAllRanks()
+                .stream()
                 .filter(LottoRank::isNotNoneRank)
                 .forEach(lottoRank -> ranks.put(lottoRank, ranks.get(lottoRank) + 1));
     }

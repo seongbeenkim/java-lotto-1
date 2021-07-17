@@ -53,8 +53,9 @@ public class WinningStatisticsTest {
     void calculateProfit(int matchedCount, boolean hasBonus, float expectedProfit) {
         //given
         LottoResult lottoResult = new LottoResult(entry(matchedCount, hasBonus));
+        LottoResults lottoResults = new LottoResults(Collections.singletonList(lottoResult));
         NumberOfTickets numberOfTickets = new NumberOfTickets(1);
-        WinningStatistics winningStatistics = new WinningStatistics(Collections.singletonList(lottoResult));
+        WinningStatistics winningStatistics = new WinningStatistics(lottoResults);
 
         //when
         float profit = winningStatistics.calculateProfit(numberOfTickets);
@@ -66,14 +67,14 @@ public class WinningStatisticsTest {
     @ParameterizedTest
     @NullSource
     @DisplayName("로또 결과 리스트가 null일 경우, 예외가 발생한다.")
-    void validateNull(List<LottoResult> lottoResults) {
+    void validateNull(LottoResults lottoResults) {
         //when //then
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new WinningStatistics(lottoResults))
                 .withMessage("1개 이상의 로또 결과 목록이 존재해야 합니다.");
     }
 
-    private List<LottoResult> createLottoResults() {
+    private LottoResults createLottoResults() {
         List<Entry<Integer, Boolean>> lottoResults = new ArrayList<>();
         lottoResults.add(entry(6, false));
         lottoResults.add(entry(5, true));
@@ -83,9 +84,9 @@ public class WinningStatisticsTest {
         lottoResults.add(entry(3, true));
         lottoResults.add(entry(3, false));
 
-        return lottoResults
+        return new LottoResults(lottoResults
                 .stream()
                 .map(LottoResult::new)
-                .collect(Collectors.toList());
+                .collect(Collectors.toList()));
     }
 }

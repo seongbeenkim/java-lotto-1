@@ -1,6 +1,7 @@
 package lotto.domain.dto.response;
 
 import lotto.domain.LottoResult;
+import lotto.domain.LottoResults;
 import lotto.domain.NumberOfTickets;
 import lotto.domain.WinningStatistics;
 import lotto.enums.LottoRank;
@@ -22,7 +23,8 @@ public class WinningStatisticsResponseTest {
         LottoResult firstRank = new LottoResult(entry(6, false));
         LottoResult secondRank = new LottoResult(entry(5, true));
         LottoResult thirdRank = new LottoResult(entry(5, false));
-        WinningStatistics winningStatistics = new WinningStatistics(Arrays.asList(firstRank, secondRank, thirdRank));
+        LottoResults lottoResults = new LottoResults(Arrays.asList(firstRank, secondRank, thirdRank));
+        WinningStatistics winningStatistics = new WinningStatistics(lottoResults);
 
         //when
         WinningStatisticsResponse winningStatisticsResponse = new WinningStatisticsResponse(winningStatistics.getRanks(), winningStatistics.calculateProfit(numberOfTickets));
