@@ -17,12 +17,13 @@ public class LottoRankResponseTest {
         //given
         int matchedRankCount = 4;
         Map.Entry<LottoRank, Integer> firstRank = entry(LottoRank.FIRST, matchedRankCount);
+
         //when
         LottoRankResponse lottoRankResponse = new LottoRankResponse(firstRank);
 
         //then
         assertThat(lottoRankResponse.getMatchedLottoNumbersCount()).isEqualTo(LottoRank.FIRST.getMatchedCount());
-        assertThat(lottoRankResponse.getTotalPrize()).isEqualTo(LottoRank.FIRST.multiplyPrizeBy(matchedRankCount));
+        assertThat(lottoRankResponse.getPrize()).isEqualTo(LottoRank.FIRST.getPrize());
         assertThat(lottoRankResponse.getMatchedRankCount()).isEqualTo(matchedRankCount);
         assertThat(lottoRankResponse.hasBouns()).isFalse();
     }

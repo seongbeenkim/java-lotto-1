@@ -16,8 +16,8 @@ public class LottoRankResponse {
         return rank.getKey().getMatchedCount();
     }
 
-    public long getTotalPrize() {
-        return rank.getKey().multiplyPrizeBy(rank.getValue());
+    public long getPrize() {
+        return rank.getKey().getPrize();
     }
 
     public int getMatchedRankCount() {

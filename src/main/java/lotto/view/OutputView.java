@@ -46,10 +46,10 @@ public class OutputView {
 
     private static void printWinningStatistic(final LottoRankResponse rankResponse) {
         if (rankResponse.hasBouns()) {
-            System.out.printf("%d개 일치, 보너스 볼 일치(%d원) - %d개 \n", rankResponse.getMatchedLottoNumbersCount(), rankResponse.getTotalPrize(), rankResponse.getMatchedRankCount());
+            System.out.printf("%d개 일치, 보너스 볼 일치(%d원) - %d개 \n", rankResponse.getMatchedLottoNumbersCount(), rankResponse.getPrize(), rankResponse.getMatchedRankCount());
             return;
         }
 
-        System.out.printf("%d개 일치 (%d원)- %d개 \n", rankResponse.getMatchedLottoNumbersCount(), rankResponse.getTotalPrize(), rankResponse.getMatchedRankCount());
+        System.out.printf("%d개 일치 (%d원)- %d개 \n", rankResponse.getMatchedLottoNumbersCount(), rankResponse.getPrize(), rankResponse.getMatchedRankCount());
     }
 }
