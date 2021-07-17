@@ -24,8 +24,8 @@ public class NumberOfTickets {
         return numberOfTickets;
     }
 
-    public float convertToPurchaseAmount() {
-        return (float) numberOfTickets * LOTTO_TICKET_PRICE;
+    public int getPaidPurchaseAmount() {
+        return numberOfTickets * LOTTO_TICKET_PRICE;
     }
 
     @Override

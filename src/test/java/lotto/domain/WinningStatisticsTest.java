@@ -49,14 +49,14 @@ public class WinningStatisticsTest {
     @ParameterizedTest
     @CsvSource(value = {"6, false, 2000000.0f", "5, true, 30000.0f", "5, false, 1500.f", "4, false, 50.0f", "3, false, 5.0f", "2, false, 0.0f"})
     @DisplayName("총 수익률을 반환한다.")
-    void profit(int matchedCount, boolean hasBonus, float expectedProfit) {
+    void calculateProfit(int matchedCount, boolean hasBonus, float expectedProfit) {
         //given
         LottoResult lottoResult = new LottoResult(entry(matchedCount, hasBonus));
         NumberOfTickets numberOfTickets = new NumberOfTickets(1);
         WinningStatistics winningStatistics = new WinningStatistics(Collections.singletonList(lottoResult));
 
         //when
-        double profit = winningStatistics.calculateProfit(numberOfTickets);
+        float profit = winningStatistics.calculateProfit(numberOfTickets);
 
         //then
         assertThat(profit).isEqualTo(expectedProfit);

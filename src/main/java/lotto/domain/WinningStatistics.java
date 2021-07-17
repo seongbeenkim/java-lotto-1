@@ -48,6 +48,6 @@ public class WinningStatistics {
                 .mapToInt(rank -> rank.multiplyPrizeBy(ranks.get(rank)))
                 .sum();
 
-        return totalPrize / numberOfTickets.convertToPurchaseAmount();
+        return (float) totalPrize / numberOfTickets.getPaidPurchaseAmount();
     }
 }
