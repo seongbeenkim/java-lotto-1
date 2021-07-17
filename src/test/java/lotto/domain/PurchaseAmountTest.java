@@ -49,6 +49,6 @@ public class PurchaseAmountTest {
         NumberOfTickets numberOfTickets = purchaseAmount.convertToNumberOfTickets();
 
         //then
-        assertThat(numberOfTickets.getNumberOfTickets()).isEqualTo(1);
+        assertThat(numberOfTickets.intValue()).isEqualTo(1);
     }
 }

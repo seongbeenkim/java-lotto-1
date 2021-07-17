@@ -28,7 +28,7 @@ public class LottoController {
         NumberOfTicketsRequest numberOfTicketsRequest = new NumberOfTicketsRequest(inputPurchaseAmount);
         PurchaseAmount purchaseAmount = new PurchaseAmount(numberOfTicketsRequest.getPurchaseAmount());
         NumberOfTickets numberOfTickets = purchaseAmount.convertToNumberOfTickets();
-        NumberOfTicketsResponse numberOfTicketsResponse = new NumberOfTicketsResponse(numberOfTickets.getNumberOfTickets());
+        NumberOfTicketsResponse numberOfTicketsResponse = new NumberOfTicketsResponse(numberOfTickets.intValue());
         OutputView.printNumberOfTickets(numberOfTicketsResponse);
         return numberOfTickets;
     }

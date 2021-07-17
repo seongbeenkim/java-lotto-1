@@ -16,7 +16,7 @@ public class NumberOfTicketsResponseTest {
         NumberOfTickets numberOfTickets = new NumberOfTickets(amount);
 
         //when
-        NumberOfTicketsResponse numberOfTicketsResponse = new NumberOfTicketsResponse(numberOfTickets.getNumberOfTickets());
+        NumberOfTicketsResponse numberOfTicketsResponse = new NumberOfTicketsResponse(numberOfTickets.intValue());
 
         //then
         assertThat(numberOfTicketsResponse.getNumberOfTickets()).isEqualTo(amount);

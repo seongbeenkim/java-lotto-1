@@ -20,7 +20,7 @@ public class NumberOfTickets {
         }
     }
 
-    public int getNumberOfTickets() {
+    public int intValue() {
         return numberOfTickets;
     }
 
