@@ -3,7 +3,6 @@ package lotto.domain;
 import java.util.AbstractMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -14,9 +13,13 @@ public class WinningNumbers {
     private final LottoNumber bonusNumber;
 
     public WinningNumbers(final List<Integer> winningNumbers, final int bonusNumber) {
-        this(winningNumbers.stream()
+        this(convertToLottoNumbers(winningNumbers), LottoNumber.valueOf(bonusNumber));
+    }
+
+    private static List<LottoNumber> convertToLottoNumbers(List<Integer> winningNumbers) {
+        return winningNumbers.stream()
                 .map(LottoNumber::valueOf)
-                .collect(Collectors.toList()), LottoNumber.valueOf(bonusNumber));
+                .collect(Collectors.toList());
     }
 
     public WinningNumbers(final List<LottoNumber> winningNumbers, final LottoNumber bonusNumber) {
@@ -37,19 +40,5 @@ public class WinningNumbers {
         int matchedCount = lottoTicket.match(winningNumbers);
         boolean hasBonusNumber = lottoTicket.contains(bonusNumber);
         return new LottoResult(new AbstractMap.SimpleEntry<>(matchedCount, hasBonusNumber));
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        WinningNumbers that = (WinningNumbers) o;
-        return Objects.equals(winningNumbers, that.winningNumbers) &&
-                Objects.equals(bonusNumber, that.bonusNumber);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(winningNumbers, bonusNumber);
     }
 }
