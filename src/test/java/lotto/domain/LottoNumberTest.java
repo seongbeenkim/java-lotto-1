@@ -16,7 +16,7 @@ public class LottoNumberTest {
     @ValueSource(ints = {1, 45})
     @DisplayName("전달받은 숫자의 로또 번호 객체를 반환한다.")
     void valueOf(int number) {
-        //given //when
+        //when
         LottoNumber lottoNumber = LottoNumber.valueOf(number);
 
         //then
@@ -27,7 +27,7 @@ public class LottoNumberTest {
     @ValueSource(ints = {0, 46})
     @DisplayName("번호가 1 ~ 45가 아닐 경우, 예외가 발생한다.")
     void validate(int invalidLottoNumber) {
-        //given //when //then
+        //when //then
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> LottoNumber.valueOf(invalidLottoNumber))
                 .withMessage("로또 번호는 1 ~ 45여야 합니다.");
@@ -36,7 +36,7 @@ public class LottoNumberTest {
     @Test
     @DisplayName("여러 숫자를 인자로 받아, 인자의 수 만큼의 로또 번호를 반환한다.")
     void of() {
-        //given //when
+        //when
         List<LottoNumber> firstLottoNumbers = LottoNumber.of(1, 2, 3, 4, 5, 6);
 
         //then

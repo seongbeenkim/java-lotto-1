@@ -30,7 +30,7 @@ public class WinningStatisticsTest {
     @Test
     @DisplayName("당첨 등수와 당첨 등수에 해당하는 갯수를 반환한다.")
     void ranksCount() {
-        //given //when
+        //when
         Map<LottoRank, Integer> ranks = winningStatistics.getRanks();
 
         //then
