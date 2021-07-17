@@ -20,7 +20,7 @@ public class LottoController {
 
     public void run() {
         NumberOfTickets numberOfTickets = getNumberOfTickets(InputView.inputPurchaseAmount());
-        LottoTickets lottoTickets = getLottoTickets(numberOfTickets);
+        LottoTickets lottoTickets = createLottoTickets(numberOfTickets);
         showWinningStatistics(InputView.inputWinningNumbers(), InputView.inputBonusNumber(), numberOfTickets, lottoTickets);
     }
 
@@ -33,7 +33,7 @@ public class LottoController {
         return numberOfTickets;
     }
 
-    private LottoTickets getLottoTickets(NumberOfTickets numberOfTickets) {
+    private LottoTickets createLottoTickets(NumberOfTickets numberOfTickets) {
         LottoTickets lottoTickets = LottoTicketGenerator.createAutoTickets(numberOfTickets);
         LottoTicketsResponse lottoTicketsResponse = new LottoTicketsResponse(lottoTickets.list());
         OutputView.printLottoTickets(lottoTicketsResponse);
