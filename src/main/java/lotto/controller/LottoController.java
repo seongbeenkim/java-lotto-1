@@ -18,10 +18,18 @@ import java.util.List;
 
 public class LottoController {
 
+    private final InputView inputView;
+    private final OutputView outputView;
+
+    public LottoController(final InputView inputView, final OutputView outputView) {
+        this.inputView = inputView;
+        this.outputView = outputView;
+    }
+
     public void run() {
-        NumberOfTickets numberOfTickets = getNumberOfTickets(InputView.inputPurchaseAmount());
+        NumberOfTickets numberOfTickets = getNumberOfTickets(inputView.inputPurchaseAmount());
         LottoTickets lottoTickets = createLottoTickets(numberOfTickets);
-        showWinningStatistics(InputView.inputWinningNumbers(), InputView.inputBonusNumber(), numberOfTickets, lottoTickets);
+        showWinningStatistics(inputView.inputWinningNumbers(), inputView.inputBonusNumber(), numberOfTickets, lottoTickets);
     }
 
     private NumberOfTickets getNumberOfTickets(String inputPurchaseAmount) {
@@ -29,14 +37,14 @@ public class LottoController {
         PurchaseAmount purchaseAmount = new PurchaseAmount(numberOfTicketsRequest.getPurchaseAmount());
         NumberOfTickets numberOfTickets = purchaseAmount.convertToNumberOfTickets();
         NumberOfTicketsResponse numberOfTicketsResponse = new NumberOfTicketsResponse(numberOfTickets.intValue());
-        OutputView.printNumberOfTickets(numberOfTicketsResponse);
+        outputView.printNumberOfTickets(numberOfTicketsResponse);
         return numberOfTickets;
     }
 
     private LottoTickets createLottoTickets(NumberOfTickets numberOfTickets) {
         LottoTickets lottoTickets = LottoTicketGenerator.createAutoTickets(numberOfTickets);
         LottoTicketsResponse lottoTicketsResponse = new LottoTicketsResponse(lottoTickets.list());
-        OutputView.printLottoTickets(lottoTicketsResponse);
+        outputView.printLottoTickets(lottoTicketsResponse);
         return lottoTickets;
     }
 
@@ -45,6 +53,6 @@ public class LottoController {
         WinningNumbers winningNumbers = new WinningNumbers(winningStatisticsRequest.getWinningNumbers(), winningStatisticsRequest.getBonusNumber());
         WinningStatistics winningStatistics = new WinningStatistics(lottoTickets.match(winningNumbers));
         WinningStatisticsResponse winningStatisticsResponse = new WinningStatisticsResponse(winningStatistics.getRanks(), winningStatistics.calculateProfit(numberOfTickets));
-        OutputView.printWinningStatistics(winningStatisticsResponse);
+        outputView.printWinningStatistics(winningStatisticsResponse);
     }
 }
