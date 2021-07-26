@@ -35,6 +35,10 @@ public class PurchaseAmount {
         return new NumberOfTickets(purchaseAmount / LOTTO_TICKET_PRICE);
     }
 
+    public boolean isLessThan(final int purchaseAmount) {
+        return this.purchaseAmount < purchaseAmount;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

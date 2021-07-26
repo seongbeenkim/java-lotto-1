@@ -51,4 +51,18 @@ public class PurchaseAmountTest {
         //then
         assertThat(numberOfTickets.intValue()).isEqualTo(1);
     }
+
+    @Test
+    @DisplayName("인자로 받은 값보다 비교하여 작을 경우, 참을 반환한다.")
+    void isLessThan() {
+        //given
+        PurchaseAmount purchaseAmount = new PurchaseAmount(1000);
+        int greaterNumber = 1001;
+
+        //when
+        boolean actual = purchaseAmount.isLessThan(greaterNumber);
+
+        //then
+        assertThat(actual).isTrue();
+    }
 }
