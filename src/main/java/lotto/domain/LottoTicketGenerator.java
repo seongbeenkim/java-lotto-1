@@ -30,9 +30,14 @@ public class LottoTicketGenerator {
 
     private static LottoTicket createAutoTicket() {
         Collections.shuffle(lottoNumbers);
-        List<LottoNumber> LottoTicketNumbers = lottoNumbers.subList(0, LOTTO_NUMBERS_COUNT);
-        LottoTicketNumbers.sort(Comparator.comparing(LottoNumber::value));
-        return new LottoTicket(LottoTicketNumbers);
+        List<LottoNumber> lottoTicketNumbers = lottoNumbers.subList(0, LOTTO_NUMBERS_COUNT);
+        lottoTicketNumbers.sort(Comparator.comparing(LottoNumber::value));
+        return new LottoTicket(lottoTicketNumbers);
+    }
 
+    public static LottoTickets createManualTickets(List<List<LottoNumber>> manualLottoNumbers) {
+        return new LottoTickets(manualLottoNumbers.stream()
+                .map(LottoTicket::new)
+                .collect(Collectors.toList()));
     }
 }
