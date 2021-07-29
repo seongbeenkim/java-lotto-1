@@ -30,7 +30,7 @@ public class NumberOfTicketsTest {
         //when //then
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new NumberOfTickets(0))
-                .withMessage("티켓은 1장 이상이여야 합니다.");
+                .withMessage("티켓은 0장 이상이여야 합니다.");
     }
 
     @ParameterizedTest

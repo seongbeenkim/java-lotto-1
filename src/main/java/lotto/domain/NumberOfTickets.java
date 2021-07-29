@@ -5,7 +5,7 @@ import java.util.Objects;
 import static lotto.domain.LottoTicket.LOTTO_TICKET_PRICE;
 
 public class NumberOfTickets {
-    private static final int NUMBER_OF_TICKETS_MIN_BOUND = 1;
+    private static final int NUMBER_OF_TICKETS_MIN_BOUND = 0;
 
     private final int numberOfTickets;
 
@@ -16,7 +16,7 @@ public class NumberOfTickets {
 
     private void validatePositive(final int numberOfTickets) {
         if (numberOfTickets < NUMBER_OF_TICKETS_MIN_BOUND) {
-            throw new IllegalArgumentException("티켓은 1장 이상이여야 합니다.");
+            throw new IllegalArgumentException("티켓은 0장 이상이여야 합니다.");
         }
     }
 

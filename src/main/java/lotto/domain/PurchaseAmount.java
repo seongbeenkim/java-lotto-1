@@ -2,8 +2,6 @@ package lotto.domain;
 
 import java.util.Objects;
 
-import static lotto.domain.LottoTicket.LOTTO_TICKET_PRICE;
-
 public class PurchaseAmount {
     private static final int PURCHASE_AMOUNT_MIN_BOUND = 1_000;
 
@@ -31,16 +29,12 @@ public class PurchaseAmount {
         }
     }
 
-    public NumberOfTickets convertToNumberOfTickets() {
-        return new NumberOfTickets(purchaseAmount / LOTTO_TICKET_PRICE);
-    }
-
     public boolean isLessThan(final int purchaseAmount) {
         return this.purchaseAmount < purchaseAmount;
     }
 
-    public PurchaseAmount deduct(final int paidPurchaseAmount) {
-        return new PurchaseAmount(this.purchaseAmount - paidPurchaseAmount);
+    public int deduct(final int paidPurchaseAmount) {
+        return this.purchaseAmount - paidPurchaseAmount;
     }
 
     @Override

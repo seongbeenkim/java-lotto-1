@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.domain.LottoTicket.LOTTO_TICKET_PRICE;
+
 public class Buyer {
     private final PurchaseAmount currentAmount;
     private final NumberOfTickets numberOfManualTickets;
@@ -19,8 +21,8 @@ public class Buyer {
     }
 
     private NumberOfTickets extractNumberOfAutoTickets() {
-        PurchaseAmount leftAmount = currentAmount.deduct(numberOfManualTickets.getPaidPurchaseAmount());
-        return leftAmount.convertToNumberOfTickets();
+        int leftAmount = currentAmount.deduct(numberOfManualTickets.getPaidPurchaseAmount());
+        return new NumberOfTickets(leftAmount / LOTTO_TICKET_PRICE);
     }
 
     public NumberOfTickets getNumberOfManualTickets() {
@@ -32,6 +34,6 @@ public class Buyer {
     }
 
     public NumberOfTickets getTotalNumberOfTickets() {
-        return numberOfManualTickets.add(numberOfManualTickets);
+        return numberOfManualTickets.add(numberOfAutoTickets);
     }
 }
