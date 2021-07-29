@@ -39,6 +39,10 @@ public class PurchaseAmount {
         return this.purchaseAmount < purchaseAmount;
     }
 
+    public PurchaseAmount deduct(final int paidPurchaseAmount) {
+        return new PurchaseAmount(this.purchaseAmount - paidPurchaseAmount);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
