@@ -1,9 +1,9 @@
 package lotto.domain.dto.request;
 
-public class NumberOfTicketsRequest {
+public class BuyerRequest {
     private final int purchaseAmount;
 
-    public NumberOfTicketsRequest(final String purchaseAmount) {
+    public BuyerRequest(final String purchaseAmount) {
         this.purchaseAmount = convertToInteger(purchaseAmount);
     }
 
