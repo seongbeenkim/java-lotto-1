@@ -12,7 +12,7 @@ public class ConsoleOutputView implements OutputView{
 
     @Override
     public void printNumberOfTickets(final NumberOfTicketsResponse numberOfTicketsResponse) {
-        System.out.printf("%d개를 구매했습니다.", numberOfTicketsResponse.getNumberOfTickets());
+        System.out.printf("수동으로 %d장, 자동으로 %d장을 구매했습니다.", numberOfTicketsResponse.getNumberOfManualTickets(), numberOfTicketsResponse.getNumberOfAutoTickets());
     }
 
     @Override

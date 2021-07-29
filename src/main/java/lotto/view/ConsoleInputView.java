@@ -1,11 +1,15 @@
 package lotto.view;
 
+import lotto.domain.dto.response.NumberOfTicketsResponse;
+
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
-public class ConsoleInputView implements InputView{
+public class ConsoleInputView implements InputView {
     private static final Scanner scanner = new Scanner(System.in);
     private static final String DEFAULT_DELIMITER = ",";
 
@@ -13,6 +17,25 @@ public class ConsoleInputView implements InputView{
     public String inputPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
         return scanner.nextLine().trim();
+    }
+
+    @Override
+    public String inputNumberOfManualTickets() {
+        System.out.println("수동으로 구매할 로또 수를 입력해 주세요.");
+        return scanner.nextLine().trim();
+    }
+
+    @Override
+    public List<List<String>> inputManualLottoNumbers(final NumberOfTicketsResponse numberOfManualTickets) {
+        if (numberOfManualTickets.getNumberOfManualTickets() == 0) {
+            return Collections.emptyList();
+        }
+
+        System.out.println("수동으로 구매할 번호를 입력해 주세요.");
+        return IntStream.range(0, numberOfManualTickets.getNumberOfManualTickets())
+                .mapToObj(i -> Arrays.stream(scanner.nextLine().split(DEFAULT_DELIMITER)))
+                .map(lottoNumbers -> lottoNumbers.map(String::trim).collect(Collectors.toList()))
+                .collect(Collectors.toList());
     }
 
     @Override
