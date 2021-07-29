@@ -24,4 +24,10 @@ public class LottoTickets {
                 .filter(lottoResult -> lottoResult.getMatchedCount() >= LottoRank.FIFTH.getMatchedCount())
                 .collect(Collectors.toList()));
     }
+
+    public LottoTickets add(final LottoTickets lottoTickets) {
+        List<LottoTicket> combinedLottoTickets = new ArrayList<>(this.lottoTickets);
+        combinedLottoTickets.addAll(lottoTickets.list());
+        return new LottoTickets(combinedLottoTickets);
+    }
 }
