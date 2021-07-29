@@ -46,4 +46,18 @@ public class NumberOfTicketsTest {
         //then
         assertThat(result).isEqualTo(input * LOTTO_TICKET_PRICE);
     }
+
+    @Test
+    @DisplayName("전달받은 티켓의 수를 합친 새로운 객체를 반환한다.")
+    void add() {
+        //given
+        NumberOfTickets numberOfTickets1 = new NumberOfTickets(10);
+        NumberOfTickets numberOfTickets2 = new NumberOfTickets(10);
+
+        //when
+        NumberOfTickets addedNumberOfTickets = numberOfTickets1.add(numberOfTickets2);
+
+        //then
+        assertThat(addedNumberOfTickets).isEqualTo(new NumberOfTickets(20));
+    }
 }

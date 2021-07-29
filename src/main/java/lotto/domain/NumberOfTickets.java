@@ -28,6 +28,10 @@ public class NumberOfTickets {
         return numberOfTickets * LOTTO_TICKET_PRICE;
     }
 
+    public NumberOfTickets add(NumberOfTickets numberOfTickets) {
+        return new NumberOfTickets(this.numberOfTickets + numberOfTickets.intValue());
+    }
+
     @Override
     public boolean equals(Object o) {
 
