@@ -9,7 +9,7 @@ public interface InputView {
 
     String inputNumberOfManualTickets();
 
-    List<List<String>> inputManualLottoNumbers(LottoTicketsCountResponse numberOfManualTickets);
+    List<List<String>> inputManualLottoNumbers(LottoTicketsCountResponse lottoTicketsCount);
 
     List<String> inputWinningNumbers();
 

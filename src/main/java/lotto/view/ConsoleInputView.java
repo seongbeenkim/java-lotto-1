@@ -26,13 +26,13 @@ public class ConsoleInputView implements InputView {
     }
 
     @Override
-    public List<List<String>> inputManualLottoNumbers(final LottoTicketsCountResponse numberOfManualTickets) {
-        if (numberOfManualTickets.getNumberOfManualTickets() == 0) {
+    public List<List<String>> inputManualLottoNumbers(final LottoTicketsCountResponse lottoTicketsCount) {
+        if (lottoTicketsCount.getNumberOfManualTickets() == 0) {
             return Collections.emptyList();
         }
 
         System.out.println("수동으로 구매할 번호를 입력해 주세요.");
-        return IntStream.range(0, numberOfManualTickets.getNumberOfManualTickets())
+        return IntStream.range(0, lottoTicketsCount.getNumberOfManualTickets())
                 .mapToObj(i -> Arrays.stream(scanner.nextLine().split(DEFAULT_DELIMITER)))
                 .map(lottoNumbers -> lottoNumbers.map(String::trim).collect(Collectors.toList()))
                 .collect(Collectors.toList());
