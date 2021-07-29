@@ -35,4 +35,19 @@ public class BuyerTest {
         //then
         assertThat(numberOfAutoTickets).isEqualTo(new NumberOfTickets(5));
     }
+
+    @Test
+    @DisplayName("모든 티켓의 수를 반환한다.")
+    void getTotalNumberOfTickets() {
+        //given
+        PurchaseAmount currentAmount = new PurchaseAmount(10_000);
+        NumberOfTickets manualNumberOfTickets = new NumberOfTickets(5);
+        Buyer buyer = new Buyer(currentAmount, manualNumberOfTickets);
+
+        //when
+        NumberOfTickets numberOfAutoTickets = buyer.getTotalNumberOfTickets();
+
+        //then
+        assertThat(numberOfAutoTickets).isEqualTo(new NumberOfTickets(10));
+    }
 }

@@ -30,4 +30,8 @@ public class Buyer {
     public NumberOfTickets getNumberOfAutoTickets() {
         return numberOfAutoTickets;
     }
+
+    public NumberOfTickets getTotalNumberOfTickets() {
+        return numberOfManualTickets.add(numberOfManualTickets);
+    }
 }
