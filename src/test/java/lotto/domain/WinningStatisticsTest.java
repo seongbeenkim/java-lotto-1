@@ -54,11 +54,11 @@ public class WinningStatisticsTest {
         //given
         LottoResult lottoResult = new LottoResult(entry(matchedCount, hasBonus));
         LottoResults lottoResults = new LottoResults(Collections.singletonList(lottoResult));
-        NumberOfTickets numberOfTickets = new NumberOfTickets(1);
+        LottoTicketsCount lottoTicketsCount = new LottoTicketsCount(1);
         WinningStatistics winningStatistics = new WinningStatistics(lottoResults);
 
         //when
-        float profit = winningStatistics.calculateProfit(numberOfTickets);
+        float profit = winningStatistics.calculateProfit(lottoTicketsCount);
 
         //then
         assertThat(profit).isEqualTo(expectedProfit);

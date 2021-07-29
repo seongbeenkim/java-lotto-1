@@ -2,7 +2,7 @@ package lotto.domain.dto.response;
 
 import lotto.domain.LottoResult;
 import lotto.domain.LottoResults;
-import lotto.domain.NumberOfTickets;
+import lotto.domain.LottoTicketsCount;
 import lotto.domain.WinningStatistics;
 import lotto.enums.LottoRank;
 import org.junit.jupiter.api.DisplayName;
@@ -19,7 +19,7 @@ public class WinningStatisticsResponseTest {
     @DisplayName("등수별 개수, 총 수익률을 인자로 받아 dto 객체를 생성한다.")
     void create() {
         //given
-        NumberOfTickets numberOfTickets = new NumberOfTickets(3);
+        LottoTicketsCount lottoTicketsCount = new LottoTicketsCount(3);
         LottoResult firstRank = new LottoResult(entry(6, false));
         LottoResult secondRank = new LottoResult(entry(5, true));
         LottoResult thirdRank = new LottoResult(entry(5, false));
@@ -27,7 +27,7 @@ public class WinningStatisticsResponseTest {
         WinningStatistics winningStatistics = new WinningStatistics(lottoResults);
 
         //when
-        WinningStatisticsResponse winningStatisticsResponse = new WinningStatisticsResponse(winningStatistics.getRanks(), winningStatistics.calculateProfit(numberOfTickets));
+        WinningStatisticsResponse winningStatisticsResponse = new WinningStatisticsResponse(winningStatistics.getRanks(), winningStatistics.calculateProfit(lottoTicketsCount));
 
         //then
         assertThat(winningStatisticsResponse.list()).hasSize(5)

@@ -42,12 +42,12 @@ public class WinningStatistics {
         return ranks;
     }
 
-    public float calculateProfit(final NumberOfTickets numberOfTickets) {
+    public float calculateProfit(final LottoTicketsCount lottoTicketsCount) {
         int totalPrize = ranks.keySet()
                 .stream()
                 .mapToInt(rank -> rank.multiplyPrizeBy(ranks.get(rank)))
                 .sum();
 
-        return (float) totalPrize / numberOfTickets.getPaidPurchaseAmount();
+        return (float) totalPrize / lottoTicketsCount.getPaidPurchaseAmount();
     }
 }

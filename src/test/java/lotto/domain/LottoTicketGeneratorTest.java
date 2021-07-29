@@ -14,10 +14,10 @@ public class LottoTicketGeneratorTest {
     @DisplayName("입력받은 티켓 장수 만큼 자동으로 생성한 로또 티켓들을 반환한다.")
     void createAutoTicket() {
         //given
-        NumberOfTickets numberOfTickets = new NumberOfTickets(10);
+        LottoTicketsCount lottoTicketsCount = new LottoTicketsCount(10);
 
         //when
-        LottoTickets lottoTickets = LottoTicketGenerator.createAutoTickets(numberOfTickets);
+        LottoTickets lottoTickets = LottoTicketGenerator.createAutoTickets(lottoTicketsCount);
 
         //then
         assertThat(lottoTickets.list()).hasSize(10);

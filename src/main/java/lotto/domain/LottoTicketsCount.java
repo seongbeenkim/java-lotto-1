@@ -4,12 +4,12 @@ import java.util.Objects;
 
 import static lotto.domain.LottoTicket.LOTTO_TICKET_PRICE;
 
-public class NumberOfTickets {
+public class LottoTicketsCount {
     private static final int NUMBER_OF_TICKETS_MIN_BOUND = 0;
 
     private final int numberOfTickets;
 
-    public NumberOfTickets(final int numberOfTickets) {
+    public LottoTicketsCount(final int numberOfTickets) {
         validatePositive(numberOfTickets);
         this.numberOfTickets = numberOfTickets;
     }
@@ -28,8 +28,8 @@ public class NumberOfTickets {
         return numberOfTickets * LOTTO_TICKET_PRICE;
     }
 
-    public NumberOfTickets add(NumberOfTickets numberOfTickets) {
-        return new NumberOfTickets(this.numberOfTickets + numberOfTickets.intValue());
+    public LottoTicketsCount add(LottoTicketsCount lottoTicketsCount) {
+        return new LottoTicketsCount(this.numberOfTickets + lottoTicketsCount.intValue());
     }
 
     @Override
@@ -37,7 +37,7 @@ public class NumberOfTickets {
 
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        NumberOfTickets that = (NumberOfTickets) o;
+        LottoTicketsCount that = (LottoTicketsCount) o;
         return numberOfTickets == that.numberOfTickets;
     }
 

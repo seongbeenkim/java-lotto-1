@@ -22,8 +22,8 @@ public class LottoTicketGenerator {
     private LottoTicketGenerator() {
     }
 
-    public static LottoTickets createAutoTickets(final NumberOfTickets numberOfTickets) {
-        return new LottoTickets(IntStream.range(0, numberOfTickets.intValue())
+    public static LottoTickets createAutoTickets(final LottoTicketsCount lottoTicketsCount) {
+        return new LottoTickets(IntStream.range(0, lottoTicketsCount.intValue())
                 .mapToObj(i -> createAutoTicket())
                 .collect(Collectors.toList()));
     }

@@ -1,10 +1,10 @@
 package lotto.domain.dto.response;
 
-public class NumberOfTicketsResponse {
+public class LottoTicketsCountResponse {
     private final int numberOfManualTickets;
     private final int numberOfAutoTickets;
 
-    public NumberOfTicketsResponse(final int numberOfManualTickets, int numberOfAutoTickets) {
+    public LottoTicketsCountResponse(final int numberOfManualTickets, int numberOfAutoTickets) {
         this.numberOfManualTickets = numberOfManualTickets;
         this.numberOfAutoTickets = numberOfAutoTickets;
     }

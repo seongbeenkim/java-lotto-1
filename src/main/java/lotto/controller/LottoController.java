@@ -3,15 +3,15 @@ package lotto.controller;
 import lotto.domain.Buyer;
 import lotto.domain.LottoTicketGenerator;
 import lotto.domain.LottoTickets;
-import lotto.domain.NumberOfTickets;
+import lotto.domain.LottoTicketsCount;
 import lotto.domain.PurchaseAmount;
 import lotto.domain.WinningNumbers;
 import lotto.domain.WinningStatistics;
 import lotto.domain.dto.request.BuyerRequest;
 import lotto.domain.dto.request.LottoTicketsRequest;
 import lotto.domain.dto.request.WinningStatisticsRequest;
+import lotto.domain.dto.response.LottoTicketsCountResponse;
 import lotto.domain.dto.response.LottoTicketsResponse;
-import lotto.domain.dto.response.NumberOfTicketsResponse;
 import lotto.domain.dto.response.WinningStatisticsResponse;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -30,10 +30,10 @@ public class LottoController {
 
     public void run() {
         Buyer buyer = createBuyer(inputView.inputPurchaseAmount(), inputView.inputNumberOfManualTickets());
-        NumberOfTicketsResponse numberOfTicketsResponse = new NumberOfTicketsResponse(buyer.getNumberOfManualTickets().intValue(), buyer.getNumberOfAutoTickets().intValue());
-        LottoTickets lottoTickets = buyLottoTickets(inputView.inputManualLottoNumbers(numberOfTicketsResponse), buyer.getNumberOfAutoTickets());
+        LottoTicketsCountResponse lottoTicketsCountResponse = new LottoTicketsCountResponse(buyer.getNumberOfManualTickets().intValue(), buyer.getNumberOfAutoTickets().intValue());
+        LottoTickets lottoTickets = buyLottoTickets(inputView.inputManualLottoNumbers(lottoTicketsCountResponse), buyer.getNumberOfAutoTickets());
         LottoTicketsResponse lottoTicketsResponse = new LottoTicketsResponse(lottoTickets.list());
-        outputView.printNumberOfTickets(numberOfTicketsResponse);
+        outputView.printNumberOfTickets(lottoTicketsCountResponse);
         outputView.printLottoTickets(lottoTicketsResponse);
         WinningStatistics winningStatistics = getWinningStatistics(inputView.inputWinningNumbers(), inputView.inputBonusNumber(), lottoTickets);
         WinningStatisticsResponse winningStatisticsResponse = new WinningStatisticsResponse(winningStatistics.getRanks(), winningStatistics.calculateProfit(buyer.getTotalNumberOfTickets()));
@@ -43,11 +43,11 @@ public class LottoController {
     private Buyer createBuyer(String inputPurchaseAmount, String inputNumberOfManualTickets) {
         BuyerRequest buyerRequest = new BuyerRequest(inputPurchaseAmount);
         PurchaseAmount purchaseAmount = new PurchaseAmount(buyerRequest.getPurchaseAmount());
-        NumberOfTickets numberOfManualTickets = new NumberOfTickets(Integer.parseInt(inputNumberOfManualTickets));
+        LottoTicketsCount numberOfManualTickets = new LottoTicketsCount(Integer.parseInt(inputNumberOfManualTickets));
         return new Buyer(purchaseAmount, numberOfManualTickets);
     }
 
-    private LottoTickets buyLottoTickets(List<List<String>> inputManualLottoNumbers, NumberOfTickets numberOfAutoTickets) {
+    private LottoTickets buyLottoTickets(List<List<String>> inputManualLottoNumbers, LottoTicketsCount numberOfAutoTickets) {
         LottoTicketsRequest lottoTicketsRequest = new LottoTicketsRequest(inputManualLottoNumbers);
         LottoTickets manualTickets = LottoTicketGenerator.createManualTickets(lottoTicketsRequest.getManualLottoNumbers());
         LottoTickets autoTickets = LottoTicketGenerator.createAutoTickets(numberOfAutoTickets);

@@ -1,6 +1,6 @@
 package lotto.view;
 
-import lotto.domain.dto.response.NumberOfTicketsResponse;
+import lotto.domain.dto.response.LottoTicketsCountResponse;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -26,7 +26,7 @@ public class ConsoleInputView implements InputView {
     }
 
     @Override
-    public List<List<String>> inputManualLottoNumbers(final NumberOfTicketsResponse numberOfManualTickets) {
+    public List<List<String>> inputManualLottoNumbers(final LottoTicketsCountResponse numberOfManualTickets) {
         if (numberOfManualTickets.getNumberOfManualTickets() == 0) {
             return Collections.emptyList();
         }

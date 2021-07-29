@@ -13,11 +13,11 @@ public class BuyerTest {
     void validateMaxedOut() {
         //given
         PurchaseAmount currentAmount = new PurchaseAmount(10_000);
-        NumberOfTickets manualNumberOfTickets = new NumberOfTickets(11);
+        LottoTicketsCount manualLottoTicketsCount = new LottoTicketsCount(11);
 
         //when //then
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new Buyer(currentAmount, manualNumberOfTickets))
+                .isThrownBy(() -> new Buyer(currentAmount, manualLottoTicketsCount))
                 .withMessage("구매하려는 수동 로또 티켓의 금액은 가지고 있는 금액보다 작아야 합니다.");
     }
 
@@ -26,14 +26,14 @@ public class BuyerTest {
     void getNumberOfAutoTicket() {
         //given
         PurchaseAmount currentAmount = new PurchaseAmount(10_000);
-        NumberOfTickets manualNumberOfTickets = new NumberOfTickets(5);
-        Buyer buyer = new Buyer(currentAmount, manualNumberOfTickets);
+        LottoTicketsCount manualLottoTicketsCount = new LottoTicketsCount(5);
+        Buyer buyer = new Buyer(currentAmount, manualLottoTicketsCount);
 
         //when
-        NumberOfTickets numberOfAutoTickets = buyer.getNumberOfAutoTickets();
+        LottoTicketsCount numberOfAutoTickets = buyer.getNumberOfAutoTickets();
 
         //then
-        assertThat(numberOfAutoTickets).isEqualTo(new NumberOfTickets(5));
+        assertThat(numberOfAutoTickets).isEqualTo(new LottoTicketsCount(5));
     }
 
     @Test
@@ -41,13 +41,13 @@ public class BuyerTest {
     void getTotalNumberOfTickets() {
         //given
         PurchaseAmount currentAmount = new PurchaseAmount(10_000);
-        NumberOfTickets manualNumberOfTickets = new NumberOfTickets(5);
-        Buyer buyer = new Buyer(currentAmount, manualNumberOfTickets);
+        LottoTicketsCount manualLottoTicketsCount = new LottoTicketsCount(5);
+        Buyer buyer = new Buyer(currentAmount, manualLottoTicketsCount);
 
         //when
-        NumberOfTickets numberOfAutoTickets = buyer.getTotalNumberOfTickets();
+        LottoTicketsCount numberOfAutoTickets = buyer.getTotalNumberOfTickets();
 
         //then
-        assertThat(numberOfAutoTickets).isEqualTo(new NumberOfTickets(10));
+        assertThat(numberOfAutoTickets).isEqualTo(new LottoTicketsCount(10));
     }
 }

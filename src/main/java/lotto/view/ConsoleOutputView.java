@@ -2,8 +2,8 @@ package lotto.view;
 
 import lotto.domain.dto.response.LottoNumbersResponse;
 import lotto.domain.dto.response.LottoRankResponse;
+import lotto.domain.dto.response.LottoTicketsCountResponse;
 import lotto.domain.dto.response.LottoTicketsResponse;
-import lotto.domain.dto.response.NumberOfTicketsResponse;
 import lotto.domain.dto.response.WinningStatisticsResponse;
 
 import java.util.stream.Collectors;
@@ -11,8 +11,8 @@ import java.util.stream.Collectors;
 public class ConsoleOutputView implements OutputView{
 
     @Override
-    public void printNumberOfTickets(final NumberOfTicketsResponse numberOfTicketsResponse) {
-        System.out.printf("수동으로 %d장, 자동으로 %d장을 구매했습니다.", numberOfTicketsResponse.getNumberOfManualTickets(), numberOfTicketsResponse.getNumberOfAutoTickets());
+    public void printNumberOfTickets(final LottoTicketsCountResponse lottoTicketsCountResponse) {
+        System.out.printf("수동으로 %d장, 자동으로 %d장을 구매했습니다.", lottoTicketsCountResponse.getNumberOfManualTickets(), lottoTicketsCountResponse.getNumberOfAutoTickets());
     }
 
     @Override

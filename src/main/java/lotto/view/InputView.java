@@ -1,6 +1,6 @@
 package lotto.view;
 
-import lotto.domain.dto.response.NumberOfTicketsResponse;
+import lotto.domain.dto.response.LottoTicketsCountResponse;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ public interface InputView {
 
     String inputNumberOfManualTickets();
 
-    List<List<String>> inputManualLottoNumbers(NumberOfTicketsResponse numberOfManualTickets);
+    List<List<String>> inputManualLottoNumbers(LottoTicketsCountResponse numberOfManualTickets);
 
     List<String> inputWinningNumbers();
 
