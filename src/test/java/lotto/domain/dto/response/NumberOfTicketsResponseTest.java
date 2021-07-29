@@ -13,12 +13,14 @@ public class NumberOfTicketsResponseTest {
     void create() {
         //given
         int amount = 10;
-        NumberOfTickets numberOfTickets = new NumberOfTickets(amount);
+        NumberOfTickets numberOfManualTickets = new NumberOfTickets(amount);
+        NumberOfTickets numberOfAutoTickets = new NumberOfTickets(amount);
 
         //when
-        NumberOfTicketsResponse numberOfTicketsResponse = new NumberOfTicketsResponse(numberOfTickets.intValue());
+        NumberOfTicketsResponse numberOfTicketsResponse = new NumberOfTicketsResponse(numberOfManualTickets.intValue(), numberOfAutoTickets.intValue());
 
         //then
-        assertThat(numberOfTicketsResponse.getNumberOfTickets()).isEqualTo(amount);
+        assertThat(numberOfTicketsResponse.getNumberOfManualTickets()).isEqualTo(amount);
+        assertThat(numberOfTicketsResponse.getNumberOfAutoTickets()).isEqualTo(amount);
     }
 }
