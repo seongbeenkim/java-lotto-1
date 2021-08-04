@@ -55,12 +55,12 @@ public class PurchaseAmountTest {
 
     @Test
     @DisplayName("현재 금액에서 인자로 받은 금액을 뺀 결과를 반환한다.")
-    void deduct() {
+    void subtract() {
         //given
         PurchaseAmount purchaseAmount = new PurchaseAmount(10000);
 
         //when
-        int leftAmount = purchaseAmount.deduct(1000);
+        int leftAmount = purchaseAmount.subtract(1000);
 
         //then
         assertThat(leftAmount).isEqualTo(9000);

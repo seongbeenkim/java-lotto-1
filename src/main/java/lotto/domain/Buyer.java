@@ -25,7 +25,7 @@ public class Buyer {
     }
 
     private LottoTicketsCount extractAutoTicketsCount() {
-        int leftAmount = currentAmount.deduct(manualTicketsCount.getPaidPurchaseAmount());
+        int leftAmount = currentAmount.subtract(manualTicketsCount.getPaidPurchaseAmount());
         return new LottoTicketsCount(leftAmount / LOTTO_TICKET_PRICE);
     }
 

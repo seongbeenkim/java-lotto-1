@@ -33,7 +33,7 @@ public class PurchaseAmount {
         return this.purchaseAmount < purchaseAmount;
     }
 
-    public int deduct(final int paidPurchaseAmount) {
+    public int subtract(final int paidPurchaseAmount) {
         return this.purchaseAmount - paidPurchaseAmount;
     }
 
