@@ -1,21 +1,17 @@
 package lotto.domain.dto.request;
 
+import lotto.domain.Buyer;
+
 public class BuyerRequest {
     private final int purchaseAmount;
+    private final int manualTicketsCount;
 
-    public BuyerRequest(final String purchaseAmount) {
-        this.purchaseAmount = convertToInteger(purchaseAmount);
+    public BuyerRequest(final String purchaseAmount, final String manualTicketsCount) {
+        this.purchaseAmount = Integer.parseInt(purchaseAmount);
+        this.manualTicketsCount = Integer.parseInt(manualTicketsCount);
     }
 
-    private int convertToInteger(final String purchaseAmount) {
-        try {
-            return Integer.parseInt(purchaseAmount);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("구매 금액은 정수여야 합니다.");
-        }
-    }
-
-    public int getPurchaseAmount() {
-        return purchaseAmount;
+    public Buyer getBuyer() {
+        return new Buyer(purchaseAmount, manualTicketsCount);
     }
 }

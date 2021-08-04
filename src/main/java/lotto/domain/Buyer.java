@@ -7,6 +7,10 @@ public class Buyer {
     private final LottoTicketsCount numberOfManualTickets;
     private final LottoTicketsCount numberOfAutoTickets;
 
+    public Buyer(final int purchaseAmount, final int manualTicketsCount) {
+        this(new PurchaseAmount(purchaseAmount), new LottoTicketsCount(manualTicketsCount));
+    }
+
     public Buyer(final PurchaseAmount currentAmount, final LottoTicketsCount numberOfManualTickets) {
         validateMaxedOut(currentAmount, numberOfManualTickets);
         this.currentAmount = currentAmount;

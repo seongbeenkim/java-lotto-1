@@ -4,7 +4,6 @@ import lotto.domain.Buyer;
 import lotto.domain.LottoTicketGenerator;
 import lotto.domain.LottoTickets;
 import lotto.domain.LottoTicketsCount;
-import lotto.domain.PurchaseAmount;
 import lotto.domain.WinningNumbers;
 import lotto.domain.WinningStatistics;
 import lotto.domain.dto.request.BuyerRequest;
@@ -41,10 +40,8 @@ public class LottoController {
     }
 
     private Buyer createBuyer(String inputPurchaseAmount, String inputNumberOfManualTickets) {
-        BuyerRequest buyerRequest = new BuyerRequest(inputPurchaseAmount);
-        PurchaseAmount purchaseAmount = new PurchaseAmount(buyerRequest.getPurchaseAmount());
-        LottoTicketsCount numberOfManualTickets = new LottoTicketsCount(Integer.parseInt(inputNumberOfManualTickets));
-        return new Buyer(purchaseAmount, numberOfManualTickets);
+        BuyerRequest buyerRequest = new BuyerRequest(inputPurchaseAmount, inputNumberOfManualTickets);
+        return buyerRequest.getBuyer();
     }
 
     private LottoTickets buyLottoTickets(List<List<String>> inputManualLottoNumbers, LottoTicketsCount numberOfAutoTickets) {
