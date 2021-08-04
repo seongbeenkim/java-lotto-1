@@ -20,19 +20,19 @@ public class ConsoleInputView implements InputView {
     }
 
     @Override
-    public String inputNumberOfManualTickets() {
+    public String inputManualTicketsCount() {
         System.out.println("수동으로 구매할 로또 수를 입력해 주세요.");
         return scanner.nextLine().trim();
     }
 
     @Override
     public List<List<String>> inputManualLottoNumbers(final LottoTicketsCountResponse lottoTicketsCount) {
-        if (lottoTicketsCount.getNumberOfManualTickets() == 0) {
+        if (lottoTicketsCount.getManualTicketsCount() == 0) {
             return Collections.emptyList();
         }
 
         System.out.println("수동으로 구매할 번호를 입력해 주세요.");
-        return IntStream.range(0, lottoTicketsCount.getNumberOfManualTickets())
+        return IntStream.range(0, lottoTicketsCount.getManualTicketsCount())
                 .mapToObj(i -> Arrays.stream(scanner.nextLine().split(DEFAULT_DELIMITER)))
                 .map(lottoNumbers -> lottoNumbers.map(String::trim).collect(Collectors.toList()))
                 .collect(Collectors.toList());

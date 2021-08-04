@@ -5,7 +5,7 @@ import lotto.domain.dto.response.LottoTicketsResponse;
 import lotto.domain.dto.response.WinningStatisticsResponse;
 
 public interface OutputView {
-    void printNumberOfTickets(LottoTicketsCountResponse lottoTicketsCountResponse);
+    void printLottoTicketsCount(LottoTicketsCountResponse lottoTicketsCountResponse);
 
     void printLottoTickets(LottoTicketsResponse lottoTicketsResponse);
 

@@ -28,26 +28,26 @@ public class LottoController {
     }
 
     public void run() {
-        Buyer buyer = createBuyer(inputView.inputPurchaseAmount(), inputView.inputNumberOfManualTickets());
-        LottoTicketsCountResponse lottoTicketsCountResponse = new LottoTicketsCountResponse(buyer.getNumberOfManualTickets().intValue(), buyer.getNumberOfAutoTickets().intValue());
-        LottoTickets lottoTickets = buyLottoTickets(inputView.inputManualLottoNumbers(lottoTicketsCountResponse), buyer.getNumberOfAutoTickets());
+        Buyer buyer = createBuyer(inputView.inputPurchaseAmount(), inputView.inputManualTicketsCount());
+        LottoTicketsCountResponse lottoTicketsCountResponse = new LottoTicketsCountResponse(buyer.getManualTicketsCount().intValue(), buyer.getAutoTicketsCount().intValue());
+        LottoTickets lottoTickets = buyLottoTickets(inputView.inputManualLottoNumbers(lottoTicketsCountResponse), buyer.getAutoTicketsCount());
         LottoTicketsResponse lottoTicketsResponse = new LottoTicketsResponse(lottoTickets.list());
-        outputView.printNumberOfTickets(lottoTicketsCountResponse);
+        outputView.printLottoTicketsCount(lottoTicketsCountResponse);
         outputView.printLottoTickets(lottoTicketsResponse);
         WinningStatistics winningStatistics = getWinningStatistics(inputView.inputWinningNumbers(), inputView.inputBonusNumber(), lottoTickets);
-        WinningStatisticsResponse winningStatisticsResponse = new WinningStatisticsResponse(winningStatistics.getRanks(), winningStatistics.calculateProfit(buyer.getTotalNumberOfTickets()));
+        WinningStatisticsResponse winningStatisticsResponse = new WinningStatisticsResponse(winningStatistics.getRanks(), winningStatistics.calculateProfit(buyer.getTotalTicketsCount()));
         outputView.printWinningStatistics(winningStatisticsResponse);
     }
 
-    private Buyer createBuyer(String inputPurchaseAmount, String inputNumberOfManualTickets) {
-        BuyerRequest buyerRequest = new BuyerRequest(inputPurchaseAmount, inputNumberOfManualTickets);
+    private Buyer createBuyer(String inputPurchaseAmount, String inputManualTicketsCount) {
+        BuyerRequest buyerRequest = new BuyerRequest(inputPurchaseAmount, inputManualTicketsCount);
         return buyerRequest.getBuyer();
     }
 
-    private LottoTickets buyLottoTickets(List<List<String>> inputManualLottoNumbers, LottoTicketsCount numberOfAutoTickets) {
+    private LottoTickets buyLottoTickets(List<List<String>> inputManualLottoNumbers, LottoTicketsCount autoTicketsCount) {
         LottoTicketsRequest lottoTicketsRequest = new LottoTicketsRequest(inputManualLottoNumbers);
         LottoTickets manualTickets = LottoTicketGenerator.createManualTickets(lottoTicketsRequest.getManualLottoNumbers());
-        LottoTickets autoTickets = LottoTicketGenerator.createAutoTickets(numberOfAutoTickets);
+        LottoTickets autoTickets = LottoTicketGenerator.createAutoTickets(autoTicketsCount);
         return new LottoTickets(manualTickets, autoTickets);
     }
 

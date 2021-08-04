@@ -13,14 +13,14 @@ public class LottoTicketsCountResponseTest {
     void create() {
         //given
         int amount = 10;
-        LottoTicketsCount numberOfManualTickets = new LottoTicketsCount(amount);
-        LottoTicketsCount numberOfAutoTickets = new LottoTicketsCount(amount);
+        LottoTicketsCount manualTicketsCount = new LottoTicketsCount(amount);
+        LottoTicketsCount autoTicketsCount = new LottoTicketsCount(amount);
 
         //when
-        LottoTicketsCountResponse lottoTicketsCountResponse = new LottoTicketsCountResponse(numberOfManualTickets.intValue(), numberOfAutoTickets.intValue());
+        LottoTicketsCountResponse lottoTicketsCountResponse = new LottoTicketsCountResponse(manualTicketsCount.intValue(), autoTicketsCount.intValue());
 
         //then
-        assertThat(lottoTicketsCountResponse.getNumberOfManualTickets()).isEqualTo(amount);
-        assertThat(lottoTicketsCountResponse.getNumberOfAutoTickets()).isEqualTo(amount);
+        assertThat(lottoTicketsCountResponse.getManualTicketsCount()).isEqualTo(amount);
+        assertThat(lottoTicketsCountResponse.getAutoTicketsCount()).isEqualTo(amount);
     }
 }

@@ -7,29 +7,29 @@ import static lotto.domain.LottoTicket.LOTTO_TICKET_PRICE;
 public class LottoTicketsCount {
     private static final int NUMBER_OF_TICKETS_MIN_BOUND = 0;
 
-    private final int numberOfTickets;
+    private final int lottoTicketsCount;
 
-    public LottoTicketsCount(final int numberOfTickets) {
-        validatePositive(numberOfTickets);
-        this.numberOfTickets = numberOfTickets;
+    public LottoTicketsCount(final int lottoTicketsCount) {
+        validatePositive(lottoTicketsCount);
+        this.lottoTicketsCount = lottoTicketsCount;
     }
 
-    private void validatePositive(final int numberOfTickets) {
-        if (numberOfTickets < NUMBER_OF_TICKETS_MIN_BOUND) {
+    private void validatePositive(final int lottoTicketsCount) {
+        if (lottoTicketsCount < NUMBER_OF_TICKETS_MIN_BOUND) {
             throw new IllegalArgumentException("티켓은 0장 이상이여야 합니다.");
         }
     }
 
     public int intValue() {
-        return numberOfTickets;
+        return lottoTicketsCount;
     }
 
     public int getPaidPurchaseAmount() {
-        return numberOfTickets * LOTTO_TICKET_PRICE;
+        return lottoTicketsCount * LOTTO_TICKET_PRICE;
     }
 
     public LottoTicketsCount add(LottoTicketsCount lottoTicketsCount) {
-        return new LottoTicketsCount(this.numberOfTickets + lottoTicketsCount.intValue());
+        return new LottoTicketsCount(this.lottoTicketsCount + lottoTicketsCount.intValue());
     }
 
     @Override
@@ -38,11 +38,11 @@ public class LottoTicketsCount {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         LottoTicketsCount that = (LottoTicketsCount) o;
-        return numberOfTickets == that.numberOfTickets;
+        return lottoTicketsCount == that.lottoTicketsCount;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(numberOfTickets);
+        return Objects.hash(lottoTicketsCount);
     }
 }

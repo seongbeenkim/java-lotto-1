@@ -23,31 +23,31 @@ public class BuyerTest {
 
     @Test
     @DisplayName("자동으로 구입할 수 있는 티켓의 수를 반환한다.")
-    void getNumberOfAutoTicket() {
+    void getAutoTicketsCount() {
         //given
         PurchaseAmount currentAmount = new PurchaseAmount(10_000);
         LottoTicketsCount manualLottoTicketsCount = new LottoTicketsCount(5);
         Buyer buyer = new Buyer(currentAmount, manualLottoTicketsCount);
 
         //when
-        LottoTicketsCount numberOfAutoTickets = buyer.getNumberOfAutoTickets();
+        LottoTicketsCount autoTicketsCount = buyer.getAutoTicketsCount();
 
         //then
-        assertThat(numberOfAutoTickets).isEqualTo(new LottoTicketsCount(5));
+        assertThat(autoTicketsCount).isEqualTo(new LottoTicketsCount(5));
     }
 
     @Test
     @DisplayName("모든 티켓의 수를 반환한다.")
-    void getTotalNumberOfTickets() {
+    void getTotalTicketsCount() {
         //given
         PurchaseAmount currentAmount = new PurchaseAmount(10_000);
         LottoTicketsCount manualLottoTicketsCount = new LottoTicketsCount(5);
         Buyer buyer = new Buyer(currentAmount, manualLottoTicketsCount);
 
         //when
-        LottoTicketsCount numberOfAutoTickets = buyer.getTotalNumberOfTickets();
+        LottoTicketsCount totalTicketsCount = buyer.getTotalTicketsCount();
 
         //then
-        assertThat(numberOfAutoTickets).isEqualTo(new LottoTicketsCount(10));
+        assertThat(totalTicketsCount).isEqualTo(new LottoTicketsCount(10));
     }
 }

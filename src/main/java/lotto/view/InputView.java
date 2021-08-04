@@ -7,7 +7,7 @@ import java.util.List;
 public interface InputView {
     String inputPurchaseAmount();
 
-    String inputNumberOfManualTickets();
+    String inputManualTicketsCount();
 
     List<List<String>> inputManualLottoNumbers(LottoTicketsCountResponse lottoTicketsCount);
 

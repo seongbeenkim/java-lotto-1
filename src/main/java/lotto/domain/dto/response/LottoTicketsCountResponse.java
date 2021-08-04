@@ -1,19 +1,19 @@
 package lotto.domain.dto.response;
 
 public class LottoTicketsCountResponse {
-    private final int numberOfManualTickets;
-    private final int numberOfAutoTickets;
+    private final int manualTicketsCount;
+    private final int autoTicketsCount;
 
-    public LottoTicketsCountResponse(final int numberOfManualTickets, int numberOfAutoTickets) {
-        this.numberOfManualTickets = numberOfManualTickets;
-        this.numberOfAutoTickets = numberOfAutoTickets;
+    public LottoTicketsCountResponse(final int manualTicketsCount, int autoTicketsCount) {
+        this.manualTicketsCount = manualTicketsCount;
+        this.autoTicketsCount = autoTicketsCount;
     }
 
-    public int getNumberOfManualTickets() {
-        return numberOfManualTickets;
+    public int getManualTicketsCount() {
+        return manualTicketsCount;
     }
 
-    public int getNumberOfAutoTickets() {
-        return numberOfAutoTickets;
+    public int getAutoTicketsCount() {
+        return autoTicketsCount;
     }
 }

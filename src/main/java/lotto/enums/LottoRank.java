@@ -45,8 +45,8 @@ public enum LottoRank {
         return matchedCount;
     }
 
-    public int multiplyPrizeBy(final int numberOfRank) {
-        return prize * numberOfRank;
+    public int multiplyPrizeBy(final int rankCount) {
+        return prize * rankCount;
     }
 
     public boolean isNotNoneRank() {

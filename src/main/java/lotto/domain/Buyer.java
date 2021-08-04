@@ -4,40 +4,40 @@ import static lotto.domain.LottoTicket.LOTTO_TICKET_PRICE;
 
 public class Buyer {
     private final PurchaseAmount currentAmount;
-    private final LottoTicketsCount numberOfManualTickets;
-    private final LottoTicketsCount numberOfAutoTickets;
+    private final LottoTicketsCount manualTicketsCount;
+    private final LottoTicketsCount autoTicketsCount;
 
     public Buyer(final int purchaseAmount, final int manualTicketsCount) {
         this(new PurchaseAmount(purchaseAmount), new LottoTicketsCount(manualTicketsCount));
     }
 
-    public Buyer(final PurchaseAmount currentAmount, final LottoTicketsCount numberOfManualTickets) {
-        validateMaxedOut(currentAmount, numberOfManualTickets);
+    public Buyer(final PurchaseAmount currentAmount, final LottoTicketsCount manualTicketsCount) {
+        validateMaxedOut(currentAmount, manualTicketsCount);
         this.currentAmount = currentAmount;
-        this.numberOfManualTickets = numberOfManualTickets;
-        this.numberOfAutoTickets = extractNumberOfAutoTickets();
+        this.manualTicketsCount = manualTicketsCount;
+        this.autoTicketsCount = extractAutoTicketsCount();
     }
 
-    private void validateMaxedOut(final PurchaseAmount currentAmount, final LottoTicketsCount numberOfManualTickets) {
-        if (currentAmount.isLessThan(numberOfManualTickets.getPaidPurchaseAmount())) {
+    private void validateMaxedOut(final PurchaseAmount currentAmount, final LottoTicketsCount manualTicketsCount) {
+        if (currentAmount.isLessThan(manualTicketsCount.getPaidPurchaseAmount())) {
             throw new IllegalArgumentException("구매하려는 수동 로또 티켓의 금액은 가지고 있는 금액보다 작아야 합니다.");
         }
     }
 
-    private LottoTicketsCount extractNumberOfAutoTickets() {
-        int leftAmount = currentAmount.deduct(numberOfManualTickets.getPaidPurchaseAmount());
+    private LottoTicketsCount extractAutoTicketsCount() {
+        int leftAmount = currentAmount.deduct(manualTicketsCount.getPaidPurchaseAmount());
         return new LottoTicketsCount(leftAmount / LOTTO_TICKET_PRICE);
     }
 
-    public LottoTicketsCount getNumberOfManualTickets() {
-        return numberOfManualTickets;
+    public LottoTicketsCount getManualTicketsCount() {
+        return manualTicketsCount;
     }
 
-    public LottoTicketsCount getNumberOfAutoTickets() {
-        return numberOfAutoTickets;
+    public LottoTicketsCount getAutoTicketsCount() {
+        return autoTicketsCount;
     }
 
-    public LottoTicketsCount getTotalNumberOfTickets() {
-        return numberOfManualTickets.add(numberOfAutoTickets);
+    public LottoTicketsCount getTotalTicketsCount() {
+        return manualTicketsCount.add(autoTicketsCount);
     }
 }
