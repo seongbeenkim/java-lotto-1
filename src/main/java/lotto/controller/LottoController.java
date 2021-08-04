@@ -48,7 +48,7 @@ public class LottoController {
         LottoTicketsRequest lottoTicketsRequest = new LottoTicketsRequest(inputManualLottoNumbers);
         LottoTickets manualTickets = LottoTicketGenerator.createManualTickets(lottoTicketsRequest.getManualLottoNumbers());
         LottoTickets autoTickets = LottoTicketGenerator.createAutoTickets(numberOfAutoTickets);
-        return manualTickets.add(autoTickets);
+        return new LottoTickets(manualTickets, autoTickets);
     }
 
     private WinningStatistics getWinningStatistics(List<String> inputWinnningNumbers, String inputBonusNumber, LottoTickets lottoTickets) {
