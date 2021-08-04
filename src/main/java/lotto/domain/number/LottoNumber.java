@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.number;
 
 import java.util.Arrays;
 import java.util.List;
@@ -9,8 +9,8 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class LottoNumber {
-    static final int LOTTO_NUMBER_MIN_BOUND = 1;
-    static final int LOTTO_NUMBER_MAX_BOUND = 45;
+    public static final int LOTTO_NUMBER_MIN_BOUND = 1;
+    public static final int LOTTO_NUMBER_MAX_BOUND = 45;
     private static final Map<Integer, LottoNumber> lottoNumbers = generateLottoNumbers();
 
     private final int lottoNumber;

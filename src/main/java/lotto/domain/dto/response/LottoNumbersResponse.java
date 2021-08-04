@@ -1,6 +1,6 @@
 package lotto.domain.dto.response;
 
-import lotto.domain.LottoNumber;
+import lotto.domain.number.LottoNumber;
 
 import java.util.ArrayList;
 import java.util.Collections;

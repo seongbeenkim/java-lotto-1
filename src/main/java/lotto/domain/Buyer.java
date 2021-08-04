@@ -1,6 +1,8 @@
 package lotto.domain;
 
-import static lotto.domain.LottoTicketsCount.LOTTO_TICKET_PRICE;
+import lotto.domain.ticket.LottoTicketsCount;
+
+import static lotto.domain.ticket.LottoTicketsCount.LOTTO_TICKET_PRICE;
 
 public class Buyer {
     private final PurchaseAmount currentAmount;

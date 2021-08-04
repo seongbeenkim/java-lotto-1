@@ -1,6 +1,6 @@
 package lotto.domain.dto.request;
 
-import lotto.domain.WinningNumbers;
+import lotto.domain.number.WinningNumbers;
 
 import java.util.List;
 import java.util.stream.Collectors;

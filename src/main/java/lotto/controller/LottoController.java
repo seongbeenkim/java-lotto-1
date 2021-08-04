@@ -1,10 +1,6 @@
 package lotto.controller;
 
 import lotto.domain.Buyer;
-import lotto.domain.LottoTicketGenerator;
-import lotto.domain.LottoTickets;
-import lotto.domain.LottoTicketsCount;
-import lotto.domain.WinningNumbers;
 import lotto.domain.WinningStatistics;
 import lotto.domain.dto.request.BuyerRequest;
 import lotto.domain.dto.request.LottoTicketsRequest;
@@ -12,6 +8,10 @@ import lotto.domain.dto.request.WinningStatisticsRequest;
 import lotto.domain.dto.response.LottoTicketsCountResponse;
 import lotto.domain.dto.response.LottoTicketsResponse;
 import lotto.domain.dto.response.WinningStatisticsResponse;
+import lotto.domain.number.WinningNumbers;
+import lotto.domain.ticket.LottoTicketGenerator;
+import lotto.domain.ticket.LottoTickets;
+import lotto.domain.ticket.LottoTicketsCount;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 

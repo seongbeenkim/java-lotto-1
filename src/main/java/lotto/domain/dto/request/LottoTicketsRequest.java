@@ -1,7 +1,7 @@
 package lotto.domain.dto.request;
 
-import lotto.domain.LottoNumber;
-import lotto.domain.ManualLottoNumbers;
+import lotto.domain.number.LottoNumber;
+import lotto.domain.number.ManualLottoNumbers;
 
 import java.util.Collections;
 import java.util.List;

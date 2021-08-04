@@ -1,6 +1,6 @@
 package lotto.enums;
 
-import lotto.domain.LottoResult;
+import lotto.domain.result.LottoResult;
 
 import java.util.Arrays;
 

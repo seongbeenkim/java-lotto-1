@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.domain.result.LottoResults;
+import lotto.domain.ticket.LottoTicketsCount;
 import lotto.enums.LottoRank;
 
 import java.util.Arrays;

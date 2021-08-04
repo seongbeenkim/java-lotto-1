@@ -1,6 +1,6 @@
 package lotto.domain.dto.response;
 
-import lotto.domain.LottoTicketsCount;
+import lotto.domain.ticket.LottoTicketsCount;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

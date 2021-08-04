@@ -1,11 +1,11 @@
-package lotto.domain;
+package lotto.domain.number;
 
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static lotto.domain.LottoTicket.LOTTO_NUMBERS_COUNT;
+import static lotto.domain.ticket.LottoTicket.LOTTO_NUMBERS_COUNT;
 
 public class ManualLottoNumbers {
     private final List<LottoNumber> lottoNumbers;

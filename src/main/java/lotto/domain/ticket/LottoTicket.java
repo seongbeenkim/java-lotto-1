@@ -1,4 +1,6 @@
-package lotto.domain;
+package lotto.domain.ticket;
+
+import lotto.domain.number.LottoNumber;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -7,7 +9,7 @@ import java.util.List;
 import java.util.Set;
 
 public class LottoTicket {
-    static final int LOTTO_NUMBERS_COUNT = 6;
+    public static final int LOTTO_NUMBERS_COUNT = 6;
 
     private final List<LottoNumber> lottoNumbers;
 

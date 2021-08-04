@@ -1,6 +1,6 @@
 package lotto.domain.dto.request;
 
-import lotto.domain.WinningNumbers;
+import lotto.domain.number.WinningNumbers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

@@ -1,4 +1,7 @@
-package lotto.domain;
+package lotto.domain.number;
+
+import lotto.domain.result.LottoResult;
+import lotto.domain.ticket.LottoTicket;
 
 import java.util.AbstractMap;
 import java.util.HashSet;
@@ -6,7 +9,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static lotto.domain.LottoTicket.LOTTO_NUMBERS_COUNT;
+import static lotto.domain.ticket.LottoTicket.LOTTO_NUMBERS_COUNT;
 
 public class WinningNumbers {
     private final List<LottoNumber> winningNumbers;

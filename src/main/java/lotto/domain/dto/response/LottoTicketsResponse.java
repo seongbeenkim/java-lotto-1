@@ -1,6 +1,6 @@
 package lotto.domain.dto.response;
 
-import lotto.domain.LottoTicket;
+import lotto.domain.ticket.LottoTicket;
 
 import java.util.ArrayList;
 import java.util.Collections;

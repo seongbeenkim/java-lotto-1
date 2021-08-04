@@ -1,4 +1,7 @@
-package lotto.domain;
+package lotto.domain.ticket;
+
+import lotto.domain.number.LottoNumber;
+import lotto.domain.number.ManualLottoNumbers;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -6,9 +9,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import static lotto.domain.LottoNumber.LOTTO_NUMBER_MAX_BOUND;
-import static lotto.domain.LottoNumber.LOTTO_NUMBER_MIN_BOUND;
-import static lotto.domain.LottoTicket.LOTTO_NUMBERS_COUNT;
+import static lotto.domain.number.LottoNumber.LOTTO_NUMBER_MAX_BOUND;
+import static lotto.domain.number.LottoNumber.LOTTO_NUMBER_MIN_BOUND;
+import static lotto.domain.ticket.LottoTicket.LOTTO_NUMBERS_COUNT;
 
 public class LottoTicketGenerator {
     private static final List<LottoNumber> lottoNumbers = collectLottoNumbers();
