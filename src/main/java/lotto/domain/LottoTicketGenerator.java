@@ -35,8 +35,9 @@ public class LottoTicketGenerator {
         return new LottoTicket(lottoTicketNumbers);
     }
 
-    public static LottoTickets createManualTickets(List<List<LottoNumber>> manualLottoNumbers) {
+    public static LottoTickets createManualTickets(final List<ManualLottoNumbers> manualLottoNumbers) {
         return new LottoTickets(manualLottoNumbers.stream()
+                .map(ManualLottoNumbers::getLottoNumbers)
                 .map(LottoTicket::new)
                 .collect(Collectors.toList()));
     }

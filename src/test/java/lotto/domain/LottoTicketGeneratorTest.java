@@ -29,9 +29,10 @@ public class LottoTicketGeneratorTest {
         //given
         List<LottoNumber> firstLottoNumbers = LottoNumber.of(1, 2, 3, 4, 5, 6);
         List<LottoNumber> secondLottoNumbers = LottoNumber.of(7, 8, 9, 10, 11, 12);
-
+        ManualLottoNumbers firstManualLottoNumbers = new ManualLottoNumbers(firstLottoNumbers);
+        ManualLottoNumbers secondManualLottoNumbers = new ManualLottoNumbers(secondLottoNumbers);
         //when
-        LottoTickets lottoTickets = LottoTicketGenerator.createManualTickets(Arrays.asList(firstLottoNumbers, secondLottoNumbers));
+        LottoTickets lottoTickets = LottoTicketGenerator.createManualTickets(Arrays.asList(firstManualLottoNumbers, secondManualLottoNumbers));
 
         //then
         assertThat(lottoTickets.list())
