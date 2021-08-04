@@ -53,7 +53,7 @@ public class LottoController {
 
     private WinningStatistics getWinningStatistics(List<String> inputWinnningNumbers, String inputBonusNumber, LottoTickets lottoTickets) {
         WinningStatisticsRequest winningStatisticsRequest = new WinningStatisticsRequest(inputWinnningNumbers, inputBonusNumber);
-        WinningNumbers winningNumbers = new WinningNumbers(winningStatisticsRequest.getWinningNumbers(), winningStatisticsRequest.getBonusNumber());
+        WinningNumbers winningNumbers = winningStatisticsRequest.getWinningNumbers();
         return new WinningStatistics(lottoTickets.match(winningNumbers));
     }
 }
