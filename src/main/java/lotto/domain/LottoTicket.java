@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Set;
 
 public class LottoTicket {
-    static final int LOTTO_TICKET_PRICE = 1000;
     static final int LOTTO_NUMBERS_COUNT = 6;
 
     private final List<LottoNumber> lottoNumbers;

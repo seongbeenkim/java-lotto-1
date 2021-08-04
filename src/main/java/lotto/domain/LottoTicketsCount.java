@@ -2,9 +2,8 @@ package lotto.domain;
 
 import java.util.Objects;
 
-import static lotto.domain.LottoTicket.LOTTO_TICKET_PRICE;
-
 public class LottoTicketsCount {
+    static final int LOTTO_TICKET_PRICE = 1000;
     private static final int NUMBER_OF_TICKETS_MIN_BOUND = 0;
 
     private final int lottoTicketsCount;
