@@ -13,6 +13,10 @@ public class LottoTicketsCount {
         this.lottoTicketsCount = lottoTicketsCount;
     }
 
+    public static LottoTicketsCount createBy(final int purchaseAmount) {
+        return new LottoTicketsCount(purchaseAmount / LOTTO_TICKET_PRICE);
+    }
+
     private void validatePositive(final int lottoTicketsCount) {
         if (lottoTicketsCount < NUMBER_OF_TICKETS_MIN_BOUND) {
             throw new IllegalArgumentException("티켓은 0장 이상이여야 합니다.");
