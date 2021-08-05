@@ -1,4 +1,4 @@
-package lotto.domain.dto.request;
+package lotto.controller.dto.request;
 
 import lotto.domain.number.LottoNumber;
 import lotto.domain.number.ManualLottoNumbers;

@@ -1,6 +1,6 @@
 package lotto.view;
 
-import lotto.domain.dto.response.LottoTicketsCountResponse;
+import lotto.controller.dto.response.LottoTicketsCountResponse;
 
 import java.util.Arrays;
 import java.util.Collections;

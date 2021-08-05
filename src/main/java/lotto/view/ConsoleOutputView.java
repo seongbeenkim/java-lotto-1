@@ -1,10 +1,10 @@
 package lotto.view;
 
-import lotto.domain.dto.response.LottoNumbersResponse;
-import lotto.domain.dto.response.LottoRankResponse;
-import lotto.domain.dto.response.LottoTicketsCountResponse;
-import lotto.domain.dto.response.LottoTicketsResponse;
-import lotto.domain.dto.response.WinningStatisticsResponse;
+import lotto.controller.dto.response.LottoNumbersResponse;
+import lotto.controller.dto.response.LottoRankResponse;
+import lotto.controller.dto.response.LottoTicketsCountResponse;
+import lotto.controller.dto.response.LottoTicketsResponse;
+import lotto.controller.dto.response.WinningStatisticsResponse;
 
 import java.util.stream.Collectors;
 

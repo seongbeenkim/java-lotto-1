@@ -1,4 +1,4 @@
-package lotto.domain.dto.response;
+package lotto.controller.dto.response;
 
 import lotto.domain.WinningStatistics;
 import lotto.domain.result.LottoResult;

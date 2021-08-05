@@ -1,8 +1,8 @@
 package lotto.view;
 
-import lotto.domain.dto.response.LottoTicketsCountResponse;
-import lotto.domain.dto.response.LottoTicketsResponse;
-import lotto.domain.dto.response.WinningStatisticsResponse;
+import lotto.controller.dto.response.LottoTicketsCountResponse;
+import lotto.controller.dto.response.LottoTicketsResponse;
+import lotto.controller.dto.response.WinningStatisticsResponse;
 
 public interface OutputView {
     void printLottoTicketsCount(LottoTicketsCountResponse lottoTicketsCountResponse);

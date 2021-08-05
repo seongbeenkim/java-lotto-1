@@ -1,13 +1,13 @@
 package lotto.controller;
 
+import lotto.controller.dto.request.BuyerRequest;
+import lotto.controller.dto.request.LottoTicketsRequest;
+import lotto.controller.dto.request.WinningStatisticsRequest;
+import lotto.controller.dto.response.LottoTicketsCountResponse;
+import lotto.controller.dto.response.LottoTicketsResponse;
+import lotto.controller.dto.response.WinningStatisticsResponse;
 import lotto.domain.Buyer;
 import lotto.domain.WinningStatistics;
-import lotto.domain.dto.request.BuyerRequest;
-import lotto.domain.dto.request.LottoTicketsRequest;
-import lotto.domain.dto.request.WinningStatisticsRequest;
-import lotto.domain.dto.response.LottoTicketsCountResponse;
-import lotto.domain.dto.response.LottoTicketsResponse;
-import lotto.domain.dto.response.WinningStatisticsResponse;
 import lotto.domain.number.WinningNumbers;
 import lotto.domain.ticket.LottoTicketGenerator;
 import lotto.domain.ticket.LottoTickets;

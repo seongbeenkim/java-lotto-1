@@ -1,4 +1,4 @@
-package lotto.domain.dto.response;
+package lotto.controller.dto.response;
 
 import lotto.enums.LottoRank;
 import org.junit.jupiter.api.DisplayName;

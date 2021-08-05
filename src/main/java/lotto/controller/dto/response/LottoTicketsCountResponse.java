@@ -1,4 +1,4 @@
-package lotto.domain.dto.response;
+package lotto.controller.dto.response;
 
 public class LottoTicketsCountResponse {
     private final int manualTicketsCount;
